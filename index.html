@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Johnson-Smart-Film-eg</title>
+    <meta name="description" content="Smart automotive protection solutions — PPF, Nano Tinting, Ceramic Coating. Official partner of RhinePro USA">
+    <meta property="og:title" content="Johnson Smart Film | Premium Smart Film & Smart Glass Solutions in Egypt">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══ LOADER ═══════════════════════════════════════════════ -->
+<div id="loader" class="loader">
+    <div class="loader__glow"></div>
+    <div id="loaderParticles" style="position:absolute;inset:0;pointer-events:none;z-index:1"></div>
+    <div class="loader__inner">
+        <div class="loader__logo-ring">
+            <img src="logo.png" alt="Johnson" class="loader__logo-img">
+        </div>
+        <div class="loader__text">JOHNSON SMART FILM</div>
+        <div class="loader__bar"><div class="loader__bar-fill"></div></div>
+    </div>
+</div>
+
+<!-- ═══ HEADER ═══════════════════════════════════════════════ -->
+<header id="header" class="header">
+    <div class="header__container container">
+        <a href="index.html" class="header__logo">
+            <img src="logo.png" alt="Johnson" class="header__logo-img">
+            <div class="header__logo-text">JOHNSON <span>SMART FILM</span></div>
+        </a>
+
+        <nav>
+            <ul class="header__nav-list">
+                <li><a href="#home"     class="header__nav-link active">Home</a></li>
+                <li><a href="#about"    class="header__nav-link">About</a></li>
+                <li><a href="#services" class="header__nav-link">Services</a></li>
+                <li><a href="#product"  class="header__nav-link">Products</a></li>
+                <li><a href="#booking"  class="header__nav-link">Book Now</a></li>
+            </ul>
+        </nav>
+
+        <div class="header__actions">
+            <a href="login.html" class="btn btn--outline btn--sm">Login</a>
+            <a href="#booking"   class="btn btn--primary btn--sm">Book Now</a>
+            <button id="menuBtn" class="header__menu-btn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- ═══ HERO ══════════════════════════════════════════════════ -->
+<section id="home" class="hero">
+    <!-- VIDEO BACKGROUND — full cover -->
+    <video id="heroVideo" class="hero__video" autoplay muted loop playsinline preload="auto">
+        <source src="PPF-Protection.mp4" type="video/mp4">
+    </video>
+
+    <!-- 3D CANVAS -->
+    <div id="heroCanvas" class="hero__canvas"></div>
+
+    <!-- OVERLAYS -->
+    <div class="hero__overlay"></div>
+    <div class="hero__overlay-bottom"></div>
+    <div class="hero__scanlines"></div>
+
+    <!-- BRAND BADGE -->
+    <div class="hero__badge">
+        <div class="hero__badge-ring">
+            <img src="logo.png" alt="Johnson" class="hero__badge-img">
+        </div>
+        <div class="hero__badge-label">AUTHORIZED PARTNER</div>
+        <div class="hero__badge-partner">RHINEPRO USA</div>
+    </div>
+
+    <!-- HERO CONTENT -->
+    <div class="container hero__content">
+        <h1 class="hero__title">
+            <span class="hero__title-line">PROTECT</span>
+            <span class="hero__title-line">PERFECT</span>
+            <span class="hero__title-line">World-class technology. Unrivaled protection.</span>
+        </h1>
+        <p class="hero__desc">
+            Self-healing TPU films, nano ceramic coating, and advanced thermal insulation.
+            We deliver the highest standard of vehicle protection in Egypt.
+        </p>
+        <div class="hero__actions">
+            <a href="#booking"  class="btn btn--primary btn--lg">
+                <i class="fas fa-calendar-check"></i> Book Your Free Consultation
+            </a>
+            <a href="#services" class="btn btn--outline btn--lg">Explore Services</a>
+        </div>
+    </div>
+
+    <!-- TICKER -->
+    <div class="hero__ticker">
+        <div class="hero__ticker-track">
+            <span>PPF</span><span class="hero__ticker-dot">●</span>
+            <span>TINTING</span><span class="hero__ticker-dot">●</span>
+            <span>CERAMIC COATING</span><span class="hero__ticker-dot">●</span>
+            <span>WRAP</span><span class="hero__ticker-dot">●</span>
+            <span>DETAILING</span><span class="hero__ticker-dot">●</span>
+            <span>SMART FILM</span><span class="hero__ticker-dot">●</span>
+            <span>PPF</span><span class="hero__ticker-dot">●</span>
+            <span>TINTING</span><span class="hero__ticker-dot">●</span>
+            <span>CERAMIC COATING</span><span class="hero__ticker-dot">●</span>
+            <span>WRAP</span><span class="hero__ticker-dot">●</span>
+            <span>DETAILING</span><span class="hero__ticker-dot">●</span>
+            <span>SMART FILM</span><span class="hero__ticker-dot">●</span>
+        </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero__scroll">
+        <span>SCROLL</span>
+        <div class="hero__scroll-line"></div>
+    </div>
+</section>
+
+<!-- ═══ ABOUT ════════════════════════════════════════════════ -->
+<section id="about" class="section has-parallax">
+    <div class="parallax-wrap">
+        <div class="parallax-layer parallax-tile--hex" data-speed="0.15"></div>
+        <div class="parallax-layer parallax-tile--grid" data-speed="0.3"></div>
+    </div>
+    <div class="container">
+        <div class="about-grid">
+            <!-- Media -->
+            <div class="about-media reveal">
+                <img src="AboutUS.png" alt="Johnson Smart Film" class="about-media__img">
+                <div class="about-media__badge">
+                    <div class="about-media__badge-num">10+</div>
+                    <div class="about-media__badge-text">Years of Experience</div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="about-content reveal">
+                <span class="section__tag">About Us</span>
+                <h2 class="section__title" style="text-align:left">We Protect Your Car<br>With the World's Best Technology</h2>
+                <p class="about-desc">
+                    At Johnson Smart Film, we combine expertise with an official partnership with
+                    RhinePro USA to deliver complete protection solutions that blend luxury and safety.
+                    Every car that enters our center leaves protected to the highest global quality standards.
+                </p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="about-feature__icon"><i class="fas fa-shield-halved"></i></div>
+                        <div>
+                            <h4>Self-Healing Protection</h4>
+                            <p>TPU films that automatically heal from surface scratches</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature__icon"><i class="fas fa-sun"></i></div>
+                        <div>
+                            <h4>Nano Thermal Insulation</h4>
+                            <p>Nano Ceramic technology blocks heat and UV rays by 99%</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature__icon"><i class="fas fa-certificate"></i></div>
+                        <div>
+                            <h4>10-Year Warranty</h4>
+                            <p>Comprehensive product and installation warranty from RhinePro USA</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#services" class="btn btn--primary">Discover Our Services <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ SERVICES ══════════════════════════════════════════════ -->
+<section id="services" class="section section--dark has-parallax">
+    <div class="parallax-wrap">
+        <div class="parallax-layer parallax-tile--grid" data-speed="0.2"></div>
+        <div class="parallax-layer parallax-tile--logo" data-speed="0.4"></div>
+    </div>
+    <div class="container">
+        <div class="section__header reveal">
+            <span class="section__tag">Our Services</span>
+            <h2 class="section__title">Complete Solutions for Every Car</h2>
+            <p class="section__desc">The latest global technologies to protect and enhance your car's appearance</p>
+        </div>
+
+        <div class="services-grid reveal">
+            <div class="service-card">
+                <div class="service-card__num">01</div>
+                <div class="service-card__icon"><i class="fas fa-shield-halved"></i></div>
+                <h3 class="service-card__title">Paint Protection Film</h3>
+                <p class="service-card__desc">
+                    Self-healing transparent TPU films protect your car's paint from scratches,
+                    rock chips, and chemical contaminants while preserving its original shine.
+                </p>
+                <div class="service-card__tags">
+                    <span class="service-card__tag">SELF-HEALING</span>
+                    <span class="service-card__tag">10 YR WARRANTY</span>
+                    <span class="service-card__tag">UV PROOF</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card__num">02</div>
+                <div class="service-card__icon"><i class="fas fa-sun"></i></div>
+                <h3 class="service-card__title">Nano Ceramic Tinting</h3>
+                <p class="service-card__desc">
+                    Advanced thermal insulation that blocks 99% of UV rays with superior
+                    optical clarity and complete privacy at all times.
+                </p>
+                <div class="service-card__tags">
+                    <span class="service-card__tag">99% UV BLOCK</span>
+                    <span class="service-card__tag">NANO CERAMIC</span>
+                    <span class="service-card__tag">HEAT REJECT</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card__num">03</div>
+                <div class="service-card__icon"><i class="fas fa-gem"></i></div>
+                <h3 class="service-card__title">Ceramic Coating</h3>
+                <p class="service-card__desc">
+                    A nano ceramic layer that bonds to the paint at a molecular level, providing
+                    5-10 years of protection with an exceptional, unmatched shine.
+                </p>
+                <div class="service-card__tags">
+                    <span class="service-card__tag">GRAPHENE</span>
+                    <span class="service-card__tag">HYDROPHOBIC</span>
+                    <span class="service-card__tag">5-10 YEARS</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card__num">04</div>
+                <div class="service-card__icon"><i class="fas fa-layer-group"></i></div>
+                <h3 class="service-card__title">Smart Film</h3>
+                <p class="service-card__desc">
+                    Interactive PDLC smart glass switches from clear to opaque at the touch of a button.
+                    Perfect for offices, villas, and storefronts.
+                </p>
+                <div class="service-card__tags">
+                    <span class="service-card__tag">SMART PDLC</span>
+                    <span class="service-card__tag">PRIVACY</span>
+                    <span class="service-card__tag">ENERGY SAVING</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card__num">05</div>
+                <div class="service-card__icon"><i class="fas fa-spray-can-sparkles"></i></div>
+                <h3 class="service-card__title">Premium Detailing</h3>
+                <p class="service-card__desc">
+                    Deep cleaning and polishing that restores your car's original shine, inside
+                    and out, using specialized German products.
+                </p>
+                <div class="service-card__tags">
+                    <span class="service-card__tag">INTERIOR</span>
+                    <span class="service-card__tag">EXTERIOR</span>
+                    <span class="service-card__tag">ENGINE BAY</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card__num">06</div>
+                <div class="service-card__icon"><i class="fas fa-car-side"></i></div>
+                <h3 class="service-card__title">Vinyl Wrap</h3>
+                <p class="service-card__desc">
+                    Change your car's color and look with premium vinyl films. Thousands
+                    of colors and finishes while preserving the original paint.
+                </p>
+                <div class="service-card__tags">
+                    <span class="service-card__tag">FULL WRAP</span>
+                    <span class="service-card__tag">PARTIAL</span>
+                    <span class="service-card__tag">REVERSIBLE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ STATS ═════════════════════════════════════════════════ -->
+<div class="stats-bar has-parallax">
+    <div class="parallax-wrap">
+        <div class="parallax-layer parallax-tile--hex" data-speed="0.25"></div>
+    </div>
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="+10"><span>0</span>+</span>
+                <span class="stat-label">Years in the Market</span>
+            </div>
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="+999"><span>0</span>+</span>
+                <span class="stat-label">Cars Serviced</span>
+            </div>
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="99"><span>0</span>%</span>
+                <span class="stat-label">Customer Satisfaction</span>
+            </div>
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="10"><span>0</span></span>
+                <span class="stat-label">Years Full Warranty</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ MARQUE SHOWCASE — single licensed photo (Pixabay, free for commercial use) ══ -->
+<div class="marque-band">
+    <div class="marque-band__layer" data-speed="0.3"></div>
+    <div class="marque-band__content">
+        <span class="marque-band__tag">Every Make. Every Model.</span>
+        <h3 class="marque-band__title">Protection That Fits Any Car</h3>
+        <p class="marque-band__desc">
+            From daily drivers to performance imports, our PPF, tinting, and ceramic
+            coating are tailored to your exact vehicle — installed with precision panel-fit cuts.
+        </p>
+    </div>
+</div>
+
+<!-- ═══ PRODUCT ═══════════════════════════════════════════════ -->
+<section id="product" class="section section--dark">
+    <div class="container">
+
+        <div class="section__header reveal">
+            <span class="section__tag">Our Products</span>
+            <h2 class="section__title">Johnson Premium Films</h2>
+            <p class="section__desc">
+                Premium American films engineered for superior paint protection,
+                heat rejection, safety, and long-lasting performance — backed by RhinePro USA.
+            </p>
+        </div>
+
+        <div class="pricing-grid">
+
+            <!-- PPF GLOSS -->
+            <div class="pricing-card reveal">
+                <div class="pricing-card__media pricing-card__media--gloss">
+                    <i class="fas fa-shield-halved pricing-card__icon"></i>
+                    <img src="pexels-pho-tomass-883344227-32364025.jpg" alt="Johnson PPF Gloss Finish" class="pricing-card__img" loading="lazy" onerror="this.remove()">
+                    <span class="pricing-card__badge"><i class="fas fa-flag-usa"></i> Made in USA</span>
+                    <div class="pricing-card__media-overlay"></div>
+                    <span class="pricing-card__num">01</span>
+                    <span class="pricing-card__media-title">PPF — GLOSS FINISH</span>
+                </div>
+                <div class="pricing-card__body">
+                    <div class="pricing-name">JOHNSON PPF</div>
+                    <div class="pricing-title">GLOSS FINISH</div>
+
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Total Thickness: 7.5 mil (190 Micron)</li>
+                        <li><i class="fas fa-check"></i> TPU Thickness: 6 mil</li>
+                        <li><i class="fas fa-check"></i> Self-Healing Coating: 15μm</li>
+                        <li><i class="fas fa-check"></i> Adhesive Layer: 25μm</li>
+                        <li><i class="fas fa-check"></i> Anti-Yellowing: ΔE &lt; 2</li>
+                        <li><i class="fas fa-check"></i> Elongation at Break: ≥200%</li>
+                        <li><i class="fas fa-check"></i> Tensile Strength: 15 MPa</li>
+                        <li><i class="fas fa-check"></i> Hydrophobic Surface</li>
+                        <li><i class="fas fa-check"></i> Glue: Ashland (USA)</li>
+                        <li><i class="fas fa-check"></i> Made in USA</li>
+                        <li><i class="fas fa-check"></i> Warranty: 10 Years</li>
+                    </ul>
+
+                    <a href="#booking" class="btn btn--outline btn--sm pricing-card__cta">Request a Quote <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- PPF MATTE -->
+            <div class="pricing-card reveal">
+                <div class="pricing-card__media pricing-card__media--matte">
+                    <i class="fas fa-shield-halved pricing-card__icon"></i>
+                    <img src="listing_main_2024_jetour_t2_UAE-2.jpg" alt="Johnson PPF Matte Finish" class="pricing-card__img" loading="lazy" onerror="this.remove()">
+                    <span class="pricing-card__badge"><i class="fas fa-flag-usa"></i> Made in USA</span>
+                    <div class="pricing-card__media-overlay"></div>
+                    <span class="pricing-card__num">02</span>
+                    <span class="pricing-card__media-title">PPF — MATTE FINISH</span>
+                </div>
+                <div class="pricing-card__body">
+                    <div class="pricing-name">JOHNSON PPF</div>
+                    <div class="pricing-title">MATTE FINISH</div>
+
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Total Thickness: 7.5 mil (190 Micron)</li>
+                        <li><i class="fas fa-check"></i> TPU Thickness: 6 mil</li>
+                        <li><i class="fas fa-check"></i> Self-Healing Coating: 15μm</li>
+                        <li><i class="fas fa-check"></i> Adhesive Layer: 25μm</li>
+                        <li><i class="fas fa-check"></i> Anti-Yellowing: ΔE &lt; 2</li>
+                        <li><i class="fas fa-check"></i> Elongation at Break: ≥200%</li>
+                        <li><i class="fas fa-check"></i> Tensile Strength: 15 MPa</li>
+                        <li><i class="fas fa-check"></i> Hydrophobic Surface</li>
+                        <li><i class="fas fa-check"></i> Glue: Ashland (USA)</li>
+                        <li><i class="fas fa-check"></i> Made in USA</li>
+                        <li><i class="fas fa-check"></i> Warranty: 10 Years</li>
+                    </ul>
+
+                    <a href="#booking" class="btn btn--outline btn--sm pricing-card__cta">Request a Quote <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- JSN 70 -->
+            <div class="pricing-card reveal">
+                <div class="pricing-card__media pricing-card__media--vlt71">
+                    <i class="fas fa-sun pricing-card__icon"></i>
+                    <img src="Luxury-Car-PNG-Free-File-Download.png" alt="Johnson Window Film JSN 70" class="pricing-card__img" loading="lazy" onerror="this.remove()">
+                    <span class="pricing-card__badge"><i class="fas fa-flag-usa"></i> Made in USA</span>
+                    <div class="pricing-card__media-overlay"></div>
+                    <span class="pricing-card__num">03</span>
+                    <span class="pricing-card__media-title">WINDOW FILM — JSN 70</span>
+                </div>
+                <div class="pricing-card__body">
+                    <div class="pricing-name">JOHNSON WINDOW FILM</div>
+                    <div class="pricing-title">JSN 70</div>
+
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Thickness: 2 mil</li>
+                        <li><i class="fas fa-check"></i> VLT: 71%</li>
+                        <li><i class="fas fa-check"></i> IR Rejection: 85%</li>
+                        <li><i class="fas fa-check"></i> UV Rejection: 100%</li>
+                        <li><i class="fas fa-check"></i> TSER: 45%</li>
+                        <li><i class="fas fa-check"></i> High Optical Clarity</li>
+                        <li><i class="fas fa-check"></i> Made in USA</li>
+                        <li><i class="fas fa-check"></i> Warranty: 10 Years</li>
+                    </ul>
+
+                    <a href="#booking" class="btn btn--outline btn--sm pricing-card__cta">Request a Quote <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- JSN 45 -->
+            <div class="pricing-card reveal">
+                <div class="pricing-card__media pricing-card__media--vlt45">
+                    <i class="fas fa-sun pricing-card__icon"></i>
+                    <img src="bmw-7739554_1280.jpg" alt="Johnson Window Film JSN 45" class="pricing-card__img" loading="lazy" onerror="this.remove()">
+                    <span class="pricing-card__badge"><i class="fas fa-flag-usa"></i> Made in USA</span>
+                    <div class="pricing-card__media-overlay"></div>
+                    <span class="pricing-card__num">04</span>
+                    <span class="pricing-card__media-title">WINDOW FILM — JSN 45</span>
+                </div>
+                <div class="pricing-card__body">
+                    <div class="pricing-name">JOHNSON WINDOW FILM</div>
+                    <div class="pricing-title">JSN 45</div>
+
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Thickness: 2 mil</li>
+                        <li><i class="fas fa-check"></i> VLT: 45%</li>
+                        <li><i class="fas fa-check"></i> IR Rejection: 85%</li>
+                        <li><i class="fas fa-check"></i> UV Rejection: 100%</li>
+                        <li><i class="fas fa-check"></i> TSER: 55%</li>
+                        <li><i class="fas fa-check"></i> Enhanced Heat Rejection</li>
+                        <li><i class="fas fa-check"></i> Made in USA</li>
+                        <li><i class="fas fa-check"></i> Warranty: 10 Years</li>
+                    </ul>
+
+                    <a href="#booking" class="btn btn--outline btn--sm pricing-card__cta">Request a Quote <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- JSN 35 -->
+            <div class="pricing-card reveal">
+                <div class="pricing-card__media pricing-card__media--vlt35">
+                    <i class="fas fa-sun pricing-card__icon"></i>
+                    <img src="bmw_PNG99543.png" alt="Johnson Window Film JSN 35" class="pricing-card__img" loading="lazy" onerror="this.remove()">
+                    <span class="pricing-card__badge"><i class="fas fa-flag-usa"></i> Made in USA</span>
+                    <div class="pricing-card__media-overlay"></div>
+                    <span class="pricing-card__num">05</span>
+                    <span class="pricing-card__media-title">WINDOW FILM — JSN 35</span>
+                </div>
+                <div class="pricing-card__body">
+                    <div class="pricing-name">JOHNSON WINDOW FILM</div>
+                    <div class="pricing-title">JSN 35</div>
+
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Thickness: 2 mil</li>
+                        <li><i class="fas fa-check"></i> VLT: 35%</li>
+                        <li><i class="fas fa-check"></i> IR Rejection: 85%</li>
+                        <li><i class="fas fa-check"></i> UV Rejection: 100%</li>
+                        <li><i class="fas fa-check"></i> TSER: 60%</li>
+                        <li><i class="fas fa-check"></i> Maximum Privacy & Heat Reduction</li>
+                        <li><i class="fas fa-check"></i> Made in USA</li>
+                        <li><i class="fas fa-check"></i> Warranty: 10 Years</li>
+                    </ul>
+
+                    <a href="#booking" class="btn btn--outline btn--sm pricing-card__cta">Request a Quote <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- SAFETY FILM 4MIL -->
+            <div class="pricing-card reveal">
+                <div class="pricing-card__media pricing-card__media--safety">
+                    <i class="fas fa-shield-virus pricing-card__icon"></i>
+                    <img src="R.png" alt="Johnson Safety Film 4mil" class="pricing-card__img" loading="lazy" onerror="this.remove()">
+                    <span class="pricing-card__badge"><i class="fas fa-flag-usa"></i> Made in USA</span>
+                    <div class="pricing-card__media-overlay"></div>
+                    <span class="pricing-card__num">06</span>
+                    <span class="pricing-card__media-title">SAFETY FILM — 4 MIL</span>
+                </div>
+                <div class="pricing-card__body">
+                    <div class="pricing-name">JOHNSON SAFETY FILM</div>
+                    <div class="pricing-title">SAFETY FILM 4MIL</div>
+
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Thickness: 4 mil</li>
+                        <li><i class="fas fa-check"></i> VLT: 91%</li>
+                        <li><i class="fas fa-check"></i> UV Rejection: 95%</li>
+                        <li><i class="fas fa-check"></i> TSER: 11%</li>
+                        <li><i class="fas fa-check"></i> Shatter Resistant Protection</li>
+                        <li><i class="fas fa-check"></i> Enhanced Glass Safety</li>
+                        <li><i class="fas fa-check"></i> High Optical Clarity</li>
+                        <li><i class="fas fa-check"></i> Made in USA</li>
+                    </ul>
+
+                    <a href="#booking" class="btn btn--outline btn--sm pricing-card__cta">Request a Quote <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══ BOOKING ═══════════════════════════════════════════════ -->
+<section id="booking" class="section">
+    <div class="container--narrow">
+
+        <div class="section__header reveal">
+            <span class="section__tag">Book Now</span>
+            <h2 class="section__title">Start Protecting Your Vehicle</h2>
+            <p class="section__desc">
+                Online booking service will be available soon.
+            </p>
+        </div>
+
+        <div class="booking-wrap reveal">
+
+            <div class="booking-progress">
+                <div class="booking-progress__step active">
+                    <div class="booking-progress__num">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <span>Service</span>
+                </div>
+
+                <div class="booking-progress__line"></div>
+
+                <div class="booking-progress__step active">
+                    <div class="booking-progress__num">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <span>Vehicle</span>
+                </div>
+
+                <div class="booking-progress__line"></div>
+
+                <div class="booking-progress__step active">
+                    <div class="booking-progress__num">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <span>Schedule</span>
+                </div>
+            </div>
+
+            <div class="coming-soon-box">
+                <i class="fas fa-clock coming-soon-icon"></i>
+
+                <h3>Online Booking Coming Soon</h3>
+
+                <p>
+                    We are currently working on our online booking system.
+                    In the meantime, please contact us directly via phone
+                    or WhatsApp to schedule your appointment.
+                </p>
+
+                <a href="https://wa.me/201114171416"
+                   class="btn btn--primary">
+                    Contact via WhatsApp
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer__main">
+            <div class="footer__grid">
+                <div>
+                    <div class="footer__logo">
+                        <img src="logo.png" alt="Johnson" class="footer__logo-img">
+                        <div class="footer__logo-name">JOHNSON <span>SMART FILM</span></div>
+                    </div>
+                    <p class="footer__desc">
+                        Smart protection solutions powered by world-class technology. Official partner of RhinePro USA
+                        for the highest quality standards and warranty in Egypt.
+                    </p>
+                    <div class="footer__social">
+                        <a href="https://www.instagram.com/johnsonsmartfilm.rhinepro.eg?igsh=MWRmZW4yODY2a3Zybg==" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@johnson.protection?_r=1&_t=ZS-97MySw0AuFM" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://wa.me/201114171416" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/share/1EY3WuEY4J/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="footer__rhinepro" style="margin-top:20px">
+                        <i class="fas fa-award"></i> Official RhinePro USA Partner
+                    </div>
+                </div>
+
+                <div class="footer__col">
+                    <h5>Quick Links</h5>
+                    <ul class="footer__links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#product">product</a></li>
+                        <li><a href="#booking">Book Now</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h5>Services</h5>
+                    <ul class="footer__links">
+                        <li><a href="#">Paint Protection Film</a></li>
+                        <li><a href="#">Nano Ceramic Tinting</a></li>
+                        <li><a href="#">Ceramic Coating</a></li>
+                        <li><a href="#">Smart Film</a></li>
+                        <li><a href="#">Premium Detailing</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h5>Contact Us</h5>
+                    <ul class="footer__contact">
+                        <li>
+                            <i class="fas fa-location-dot"></i>
+                            Waslet Dahshur Rd — Sheikh Zayed, Giza
+                        </li>
+                        <li>
+                            <i class="fas fa-location-dot"></i>
+                            Cairo Agricultural Road - El Mahalla El Kubra, Gharbia
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+201114171416">+20 111 417 1416</a>
+                            <a href="tel:+201208889501">+20 120 888 9501</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@johnsonsmartfilm.com">info@johnsonsmartfilm.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            Saturday – Thursday: 12 PM – 9 PM
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer__bottom container">
+            <p>© 2026 Johnson Smart Film. All rights reserved.</p>
+            <div class="footer__bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ═══ SCRIPTS ════════════════════════════════════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
