@@ -287,34 +287,7 @@
   }
 
 
-  /* ═══ BOOKING MOBILE ═══ */
-  .booking-progress {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0;
-    margin-bottom: 2rem;
-  }
-
-  .booking-progress__step {
-    flex: 1;
-    max-width: 110px;
-  }
-
-  .booking-progress__num {
-    width: 52px;
-    height: 52px;
-    font-size: 1.2rem;
-  }
-
-  .booking-progress__step span {
-    font-size: 11px;
-  }
-
-  .booking-progress__line {
-    margin-top: 26px; /* منتصف الدائرة 52px / 2 */
-    flex: 1;
-  }
+ 
 
   /* ═══ SCROLL HINT MOBILE ═══ */
   .hero__actions {
