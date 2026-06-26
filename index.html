@@ -21,7 +21,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div id="mobileNav" class="mobile-nav">
+    <button id="mobileNavClose" class="mobile-nav__close">
+        <i class="fas fa-times"></i>
+    </button>
+    <a href="#home"     class="mobile-nav-link" data-close>Home</a>
+    <a href="#about"    class="mobile-nav-link" data-close>About</a>
+    <a href="#services" class="mobile-nav-link" data-close>Services</a>
+    <a href="#product"  class="mobile-nav-link" data-close>Products</a>
+    <a href="#booking"  class="mobile-nav-link" data-close>Book Now</a>
+    <div class="mobile-nav-footer">
+        <a href="login.html" class="btn btn--outline btn--sm">Login</a>
+        <a href="#booking" class="btn btn--primary btn--sm" data-close>Book Now</a>
+    </div>
+</div>
 <!-- ═══ LOADER ═══════════════════════════════════════════════ -->
 <div id="loader" class="loader">
     <div class="loader__glow"></div>
