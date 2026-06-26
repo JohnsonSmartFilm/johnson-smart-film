@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Login — Johnson Smart Film</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
@@ -10,47 +10,69 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile-fixes.css">
+    <link rel="stylesheet" href="mobile-fixes.css">
     <style>
-        body { overflow: hidden; }
-        @media(max-width:900px){body{overflow:auto}}
-        .auth-page { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+        /* ── Auth Page Layout ─────────────────────────── */
+        body { overflow-x: hidden; }
 
-        /* Visual Side */
+        .auth-page {
+            min-height: 100vh;
+            min-height: 100dvh; /* dynamic viewport for mobile browsers */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* ── Visual Side ──────────────────────────────── */
         .auth-visual {
-            position: relative; overflow: hidden;
-            display: flex; flex-direction: column;
-            justify-content: space-between; padding: 48px 60px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 48px 60px;
+            min-height: 100vh;
+            min-height: 100dvh;
         }
         .auth-visual__video {
             position: absolute; inset: 0;
-            width: 100%; height: 100%; object-fit: cover;
-            opacity: 0.3; filter: saturate(0.3);
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            filter: saturate(0.3);
         }
         .auth-visual__overlay {
             position: absolute; inset: 0; z-index: 1;
-            background: linear-gradient(160deg, rgba(6,6,8,0.97) 0%, rgba(6,6,8,0.75) 60%, rgba(0,30,40,0.85) 100%);
+            background: linear-gradient(160deg,
+                rgba(6,6,8,0.97) 0%,
+                rgba(6,6,8,0.75) 60%,
+                rgba(0,30,40,0.85) 100%
+            );
         }
-        .auth-visual__top, .auth-visual__mid, .auth-visual__bottom {
-            position: relative; z-index: 2;
-        }
+        .auth-visual__top,
+        .auth-visual__mid,
+        .auth-visual__bottom { position: relative; z-index: 2; }
+
         .auth-visual__logo {
             display: flex; align-items: center; gap: 12px;
         }
         .auth-visual__logo img {
-            width: 44px; height: 44px; object-fit: contain;
+            width: 44px; height: 44px;
+            object-fit: contain;
             filter: brightness(0) invert(1);
         }
-        .auth-visual__logo-text { text-align: right; }
         .auth-visual__logo-name {
-            font-family: var(--font-disp); font-size: 24px; letter-spacing: 3px; display: block;
+            font-family: var(--font-disp);
+            font-size: 24px; letter-spacing: 3px; display: block;
         }
         .auth-visual__logo-sub {
-            font-family: var(--font-en); font-size: 9px; letter-spacing: 4px; color: var(--accent);
+            font-family: var(--font-en);
+            font-size: 9px; letter-spacing: 4px; color: var(--accent);
         }
         .auth-visual__mid { text-align: center; }
         .auth-visual__headline {
             font-family: var(--font-disp);
-            font-size: clamp(40px,5vw,62px);
+            font-size: clamp(36px, 4.5vw, 62px);
             line-height: 1.0; letter-spacing: 2px;
             margin-bottom: 16px;
         }
@@ -68,42 +90,54 @@
             background: rgba(255,255,255,0.04);
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
-            padding: 12px 16px; font-size: 14px; color: var(--text-2);
+            padding: 12px 16px;
+            font-size: 14px; color: var(--text-2);
         }
         .auth-perk i { color: var(--accent); width: 18px; text-align: center; }
         .auth-visual__bottom {
             display: flex; align-items: center; justify-content: space-between;
-            font-family: var(--font-en); font-size: 11px; letter-spacing: 2px; color: var(--text-3);
+            font-family: var(--font-en);
+            font-size: 11px; letter-spacing: 2px; color: var(--text-3);
         }
         .auth-rhinepro {
-            display: flex; align-items: center; gap: 8px; color: var(--gold);
-            font-size: 11px; letter-spacing: 2px;
+            display: flex; align-items: center; gap: 8px;
+            color: var(--gold); font-size: 11px; letter-spacing: 2px;
         }
         .auth-rhinepro i { font-size: 13px; }
 
-        /* Form Side */
+        /* ── Form Side ────────────────────────────────── */
         .auth-form-side {
             display: flex; flex-direction: column; justify-content: center;
-            padding: 60px 72px; background: var(--bg); overflow-y: auto;
+            padding: 60px 72px;
+            background: var(--bg);
+            overflow-y: auto;
+            min-height: 100vh;
+            min-height: 100dvh;
         }
+
+        /* ── Tabs ─────────────────────────────────────── */
         .auth-tabs {
-            display: flex; border-bottom: 1px solid var(--border);
-            margin-bottom: 36px; gap: 0;
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 36px;
         }
         .auth-tab {
             flex: 1; text-align: center; padding: 14px;
             font-size: 15px; font-weight: 600; color: var(--text-2);
-            cursor: pointer; border-bottom: 2px solid transparent;
-            transition: all 0.3s; background: none; border-top: none;
-            border-left: none; border-right: none;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            border-top: none; border-left: none; border-right: none;
+            background: none;
+            transition: all 0.3s;
             font-family: var(--font-ar);
         }
         .auth-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-        /* Role toggle */
+        /* ── Role Toggle ──────────────────────────────── */
         .role-toggle {
             display: grid; grid-template-columns: 1fr 1fr;
-            border: 1px solid var(--border); border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
             overflow: hidden; margin-bottom: 28px;
         }
         .role-btn {
@@ -111,24 +145,38 @@
             font-size: 13px; font-weight: 600;
             color: var(--text-2); background: transparent;
             border: none; cursor: pointer; transition: all 0.25s;
-            font-family: var(--font-ar); display: flex;
-            align-items: center; justify-content: center; gap: 8px;
+            font-family: var(--font-ar);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            /* Minimum tap target */
+            min-height: 48px;
         }
         .role-btn.active { background: var(--accent); color: #000; }
         .role-btn i { font-size: 14px; }
 
+        /* ── Form Panel ───────────────────────────────── */
         .auth-form-panel { display: none; }
-        .auth-form-panel.active { display: block; animation: panelIn 0.4s var(--ease-out); }
-        @keyframes panelIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+        .auth-form-panel.active {
+            display: block;
+            animation: panelIn 0.4s var(--ease-out);
+        }
+        @keyframes panelIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
-        .auth-form-title { font-family: var(--font-disp); font-size: 34px; margin-bottom: 6px; }
+        .auth-form-title {
+            font-family: var(--font-disp);
+            font-size: clamp(26px, 4vw, 34px);
+            margin-bottom: 6px;
+        }
         .auth-form-sub { color: var(--text-2); font-size: 14px; margin-bottom: 28px; }
 
-        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .input-row.full { grid-template-columns: 1fr; }
-
+        /* ── Fields ───────────────────────────────────── */
         .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-        .field label { font-size: 12px; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; }
+        .field label {
+            font-size: 12px; color: var(--text-3);
+            letter-spacing: 1px; text-transform: uppercase;
+        }
         .field-wrap { position: relative; }
         .field-wrap i.fi-icon {
             position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
@@ -138,57 +186,104 @@
             position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
             color: var(--text-3); font-size: 14px; cursor: pointer;
             background: none; border: none; padding: 0; transition: color 0.2s;
+            /* Bigger tap target on mobile */
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
         }
         .field-wrap .eye:hover { color: var(--text-2); }
         .field-wrap input {
-            width: 100%; background: var(--bg-2);
-            border: 1px solid var(--border); border-radius: var(--radius-sm);
-            padding: 13px 44px 13px 42px; color: var(--text);
-            font-family: var(--font-ar); font-size: 15px;
-            outline: none; transition: border-color 0.3s;
+            width: 100%;
+            background: var(--bg-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 14px 48px 14px 42px;
+            color: var(--text);
+            font-family: var(--font-ar);
+            font-size: 16px; /* Prevents iOS zoom on focus */
+            outline: none;
+            transition: border-color 0.3s;
+            -webkit-appearance: none; /* Remove iOS styling */
+            appearance: none;
         }
         .field-wrap input:focus { border-color: var(--accent); }
         .field-wrap input.err { border-color: var(--red); }
 
-        .auth-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-        .remember { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-2); cursor: pointer; }
-        .remember input { accent-color: var(--accent); }
-        .forgot { font-size: 13px; color: var(--accent); }
+        /* ── Auth Row ─────────────────────────────────── */
+        .auth-row {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 20px; gap: 12px; flex-wrap: wrap;
+        }
+        .remember {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 14px; color: var(--text-2); cursor: pointer;
+            /* Bigger tap target */
+            padding: 4px 0;
+        }
+        .remember input { accent-color: var(--accent); width: 16px; height: 16px; }
+        .forgot { font-size: 13px; color: var(--accent); padding: 4px 0; }
         .forgot:hover { text-decoration: underline; }
 
-        .auth-or {
-            display: flex; align-items: center; gap: 14px;
-            font-size: 12px; color: var(--text-3); margin: 20px 0;
-        }
-        .auth-or::before,.auth-or::after { content:''; flex:1; height:1px; background:var(--border); }
-
-        .auth-switch-text { text-align: center; font-size: 14px; color: var(--text-2); margin-top: 24px; }
-        .auth-switch-text a { color: var(--accent); }
-        .auth-switch-text a:hover { text-decoration: underline; }
-
-        /* Admin notice */
+        /* ── Admin Note ───────────────────────────────── */
         .admin-note {
-            background: rgba(201,169,110,0.08); border: 1px solid rgba(201,169,110,0.2);
-            border-radius: var(--radius-sm); padding: 12px 16px;
-            font-size: 13px; color: var(--gold); display: flex; gap: 8px; align-items: flex-start;
+            background: rgba(201,169,110,0.08);
+            border: 1px solid rgba(201,169,110,0.2);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            font-size: 13px; color: var(--gold);
+            display: flex; gap: 8px; align-items: flex-start;
             margin-bottom: 20px;
         }
         .admin-note i { flex-shrink: 0; margin-top: 2px; }
 
+        /* ── Error Messages ───────────────────────────── */
         .error-msg {
             color: var(--red); font-size: 12px;
-            display: none; margin-top: -10px; margin-bottom: 4px;
+            display: none; margin-top: -4px; margin-bottom: 4px;
         }
         .error-msg.show { display: block; }
 
-        @media(max-width:900px){
-            .auth-visual{display:none}
-            .auth-form-side{padding:48px 32px}
+        /* ── Back Link ────────────────────────────────── */
+        .back-link {
+            text-align: center; margin-top: 32px;
         }
-        @media(max-width:480px){
-            .auth-form-side{padding:36px 20px}
-            .input-row{grid-template-columns:1fr}
+        .back-link a {
+            font-size: 13px; color: var(--text-3);
+            transition: color 0.2s;
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px;
         }
+        .back-link a:hover { color: var(--text-2); }
+
+        /* ── MOBILE RESPONSIVE ────────────────────────── */
+        @media (max-width: 900px) {
+            .auth-page {
+                grid-template-columns: 1fr;
+                min-height: 100vh;
+                min-height: 100dvh;
+            }
+            .auth-visual { display: none; }
+            .auth-form-side {
+                padding: 48px 32px;
+                justify-content: flex-start;
+                padding-top: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-form-side {
+                padding: 40px 20px;
+                padding-top: 52px;
+            }
+            .auth-tabs { margin-bottom: 24px; }
+            .auth-form-title { font-size: 28px; }
+            .role-toggle { margin-bottom: 20px; }
+            .field { margin-bottom: 14px; }
+            /* Make the login button easier to tap */
+            .btn--full { padding: 16px; font-size: 16px; }
+        }
+
+        /* Prevent any horizontal overflow */
+        .auth-form-side, .auth-page { max-width: 100vw; }
     </style>
 </head>
 <body>
@@ -207,25 +302,23 @@
 
 <div class="auth-page">
 
-    <!-- ═══ LEFT: VISUAL ══════════════════════════════════════ -->
+    <!-- ═══ LEFT: VISUAL ════════════════════════════════════ -->
     <div class="auth-visual">
         <video class="auth-visual__video" autoplay muted loop playsinline>
             <source src="Polshing.mp4" type="video/mp4">
         </video>
         <div class="auth-visual__overlay"></div>
 
-        <!-- Top: Logo -->
         <div class="auth-visual__top">
             <div class="auth-visual__logo">
                 <img src="logo.png" alt="Johnson">
-                <div class="auth-visual__logo-text">
+                <div>
                     <span class="auth-visual__logo-name">JOHNSON</span>
                     <span class="auth-visual__logo-sub">SMART FILM</span>
                 </div>
             </div>
         </div>
 
-        <!-- Mid: Tagline + Perks -->
         <div class="auth-visual__mid">
             <h2 class="auth-visual__headline">
                 Protection<br>Unseen. <em>Felt.</em><br>Every Drive.
@@ -253,7 +346,6 @@
             </div>
         </div>
 
-        <!-- Bottom: Partner badge -->
         <div class="auth-visual__bottom">
             <span>© 2026 Johnson Smart Film</span>
             <div class="auth-rhinepro">
@@ -262,10 +354,9 @@
         </div>
     </div>
 
-    <!-- ═══ RIGHT: FORM ════════════════════════════════════════ -->
+    <!-- ═══ RIGHT: FORM ══════════════════════════════════════ -->
     <div class="auth-form-side">
 
-        <!-- Tabs: Login / Register -->
         <div class="auth-tabs">
             <button class="auth-tab active" data-panel="login">Login</button>
         </div>
@@ -273,7 +364,6 @@
         <!-- ── LOGIN PANEL ── -->
         <div class="auth-form-panel active" id="panel-login">
 
-            <!-- Role Toggle -->
             <div class="role-toggle" id="loginRoleToggle">
                 <button class="role-btn active" data-role="user">
                     <i class="fas fa-user"></i> Customer
@@ -293,20 +383,27 @@
 
             <form id="loginForm" novalidate>
                 <div class="field">
-                    <label>Email Address</label>
+                    <label for="loginEmail">Email Address</label>
                     <div class="field-wrap">
                         <i class="fas fa-envelope fi-icon"></i>
-                        <input type="email" id="loginEmail" placeholder="example@email.com" required>
+                        <input type="email" id="loginEmail"
+                               placeholder="example@email.com"
+                               autocomplete="email"
+                               inputmode="email"
+                               required>
                     </div>
                     <div class="error-msg" id="emailErr">Please enter a valid email address</div>
                 </div>
 
                 <div class="field">
-                    <label>Password</label>
+                    <label for="loginPass">Password</label>
                     <div class="field-wrap">
                         <i class="fas fa-lock fi-icon"></i>
-                        <input type="password" id="loginPass" placeholder="••••••••" required>
-                        <button type="button" class="eye" id="eyeBtn">
+                        <input type="password" id="loginPass"
+                               placeholder="••••••••"
+                               autocomplete="current-password"
+                               required>
+                        <button type="button" class="eye" id="eyeBtn" aria-label="Toggle password visibility">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
@@ -320,21 +417,19 @@
                     <a href="#" class="forgot">Forgot password?</a>
                 </div>
 
-                <button type="submit" class="btn btn--primary btn--full" style="font-size:16px;padding:15px">
+                <button type="submit" class="btn btn--primary btn--full">
                     <i class="fas fa-sign-in-alt"></i> Login
                 </button>
 
-                <div id="loginError" class="error-msg show" style="display:none;text-align:center;margin-top:12px;font-size:14px">
+                <div id="loginError" class="error-msg"
+                     style="display:none;text-align:center;margin-top:12px;font-size:14px">
                     Incorrect email or password
                 </div>
             </form>
         </div>
 
-        <!-- Back link -->
-        <div style="text-align:center;margin-top:32px">
-            <a href="index.html" style="font-size:13px;color:var(--text-3);transition:color 0.2s"
-               onmouseover="this.style.color='var(--text-2)'"
-               onmouseout="this.style.color='var(--text-3)'">
+        <div class="back-link">
+            <a href="index.html">
                 <i class="fas fa-arrow-left"></i> Back to website
             </a>
         </div>
@@ -347,122 +442,93 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Loader ──
     const loader = document.getElementById('loader');
     window.addEventListener('load', () => {
-        setTimeout(() => loader.classList.add('hidden'), 600);
+        setTimeout(() => {
+            if (loader) loader.classList.add('hidden');
+        }, 800);
     });
-
-    // ── Tabs ──
-    const tabs = document.querySelectorAll('.auth-tab');
-    const panels = document.querySelectorAll('.auth-form-panel');
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            panels.forEach(p => p.classList.remove('active'));
-            tab.classList.add('active');
-            document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
-        });
-    });
-
-    // ── Tab switch links ──
-    document.getElementById('goRegister')?.addEventListener('click', e => {
-        e.preventDefault();
-        tabs[1].click();
-    });
-    document.getElementById('goLogin')?.addEventListener('click', e => {
-        e.preventDefault();
-        tabs[0].click();
-    });
+    // Fallback if load event already fired
+    if (document.readyState === 'complete') {
+        setTimeout(() => {
+            if (loader) loader.classList.add('hidden');
+        }, 800);
+    }
 
     // ── Role Toggle ──
     const roleToggle = document.getElementById('loginRoleToggle');
     const adminNote  = document.getElementById('adminNote');
     let currentRole  = 'user';
 
-    roleToggle?.querySelectorAll('.role-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            roleToggle.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentRole = btn.dataset.role;
-            adminNote.style.display = currentRole === 'admin' ? 'flex' : 'none';
-        });
-    });
-
-    // ── Eye Toggle ──
-    function setupEye(eyeId, inputId) {
-        const eye = document.getElementById(eyeId);
-        const inp = document.getElementById(inputId);
-        if (!eye || !inp) return;
-        eye.addEventListener('click', () => {
-            const show = inp.type === 'password';
-            inp.type = show ? 'text' : 'password';
-            eye.innerHTML = `<i class="fas fa-eye${show ? '-slash' : ''}"></i>`;
+    if (roleToggle) {
+        roleToggle.querySelectorAll('.role-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                roleToggle.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentRole = btn.dataset.role;
+                if (adminNote) {
+                    adminNote.style.display = currentRole === 'admin' ? 'flex' : 'none';
+                }
+            });
         });
     }
-    setupEye('eyeBtn', 'loginPass');
-    setupEye('eyeBtn2', 'regPass');
+
+    // ── Eye Toggle ──
+    const eyeBtn   = document.getElementById('eyeBtn');
+    const loginPass = document.getElementById('loginPass');
+    if (eyeBtn && loginPass) {
+        eyeBtn.addEventListener('click', () => {
+            const show = loginPass.type === 'password';
+            loginPass.type = show ? 'text' : 'password';
+            eyeBtn.querySelector('i').className = `fas fa-eye${show ? '-slash' : ''}`;
+        });
+    }
 
     // ── Login Form ──
-    document.getElementById('loginForm')?.addEventListener('submit', e => {
-        e.preventDefault();
-        const email = document.getElementById('loginEmail').value.trim();
-        const pass  = document.getElementById('loginPass').value;
-        let valid = true;
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', e => {
+            e.preventDefault();
 
-        document.getElementById('emailErr').classList.remove('show');
-        document.getElementById('passErr').classList.remove('show');
-        document.getElementById('loginError').style.display = 'none';
+            const email = document.getElementById('loginEmail').value.trim();
+            const pass  = loginPass ? loginPass.value : '';
+            const emailErr  = document.getElementById('emailErr');
+            const passErr   = document.getElementById('passErr');
+            const loginError = document.getElementById('loginError');
+            let valid = true;
 
-        if (!email || !email.includes('@')) {
-            document.getElementById('emailErr').classList.add('show');
-            document.getElementById('loginEmail').classList.add('err');
-            valid = false;
-        }
-        if (!pass) {
-            document.getElementById('passErr').classList.add('show');
-            document.getElementById('loginPass').classList.add('err');
-            valid = false;
-        }
-        if (!valid) return;
+            // Reset errors
+            emailErr.classList.remove('show');
+            passErr.classList.remove('show');
+            if (loginError) loginError.style.display = 'none';
+            document.getElementById('loginEmail').classList.remove('err');
+            if (loginPass) loginPass.classList.remove('err');
 
-        // Simulate — redirect based on role
-        const btn = e.target.querySelector('[type="submit"]');
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-        btn.disabled = true;
-
-        setTimeout(() => {
-            if (currentRole === 'admin') {
-                window.location.href = 'dashboard-admin.html';
-            } else {
-                window.location.href = 'dashboard-user.html';
+            // Validate
+            if (!email || !email.includes('@')) {
+                emailErr.classList.add('show');
+                document.getElementById('loginEmail').classList.add('err');
+                valid = false;
             }
-        }, 1200);
-    });
+            if (!pass) {
+                passErr.classList.add('show');
+                if (loginPass) loginPass.classList.add('err');
+                valid = false;
+            }
+            if (!valid) return;
 
-    // ── Register Form ──
-    document.getElementById('registerForm')?.addEventListener('submit', e => {
-        e.preventDefault();
-        const pass  = document.getElementById('regPass').value;
-        const pass2 = document.getElementById('regPassConfirm').value;
-        const agree = document.getElementById('agree').checked;
+            // Submit
+            const btn = loginForm.querySelector('[type="submit"]');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+            btn.disabled = true;
 
-        document.getElementById('passMatchErr').classList.remove('show');
-
-        if (pass !== pass2) {
-            document.getElementById('passMatchErr').classList.add('show');
-            return;
-        }
-        if (!agree) {
-            alert('Please agree to the Terms & Conditions');
-            return;
-        }
-
-        const btn = e.target.querySelector('[type="submit"]');
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
-        btn.disabled = true;
-
-        setTimeout(() => {
-            window.location.href = 'dashboard-user.html';
-        }, 1400);
-    });
+            setTimeout(() => {
+                if (currentRole === 'admin') {
+                    window.location.href = 'dashboard-admin.html';
+                } else {
+                    window.location.href = 'dashboard-user.html';
+                }
+            }, 1200);
+        });
+    }
 });
 </script>
 </body>
