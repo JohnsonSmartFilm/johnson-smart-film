@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#060608">
+    
+    <!-- SEO Meta -->
+    <title>Login — Johnson Smart Film</title>
+    <meta name="description" content="Login to Johnson Smart Film — manage your appointments, track your car's status, and access exclusive offers.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Login — Johnson Smart Film">
+    <meta property="og:description" content="Manage your appointments and track your car's protection status.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.PNG">
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile-fixes.css">
+</head>
+
+<body>
+
+    <!-- ═══════════════════ LOADER ═══════════════════ -->
+    <div id="loader" class="loader">
+        <div class="loader__glow"></div>
+        <div class="loader__inner">
+            <div class="loader__logo-ring">
+                <img src="logo.PNG" alt="Johnson" class="loader__logo-img">
+            </div>
+            <div class="loader__text">JOHNSON SMART FILM</div>
+            <div class="loader__bar"><div class="loader__bar-fill"></div></div>
+        </div>
+        <div id="loaderParticles"></div>
+    </div>
+
+    <!-- ═══════════════════ AUTH PAGE ═══════════════════ -->
+    <div class="auth-page">
+        
+        <!-- ─────── LEFT: Visual Side ─────── -->
+        <aside class="auth-visual">
+            <video class="auth-visual__video" autoplay muted loop playsinline poster="media/auth-poster.jpg">
+                <source src="media/auth-bg.mp4" type="video/mp4">
+            </video>
+            <div class="auth-visual__overlay"></div>
+            
+            <div class="auth-visual__content">
+                <div class="auth-visual__logo">
+                    <img src="logo.PNG" alt="Johnson Smart Film" class="auth-visual__logo-img">
+                    <div class="auth-visual__logo-text">
+                        <span class="auth-visual__logo-name">JOHNSON</span>
+                        <span class="auth-visual__logo-sub">SMART FILM</span>
+                    </div>
+                </div>
+                
+                <h1 class="auth-visual__tagline">
+                    Protection <em>Unseen.</em><br>
+                    Felt. <em>Every Drive.</em>
+                </h1>
+                <p class="auth-visual__sub">
+                    Log in to manage your appointments, track your car's status, 
+                    and access exclusive offers.
+                </p>
+                
+                <div class="auth-visual__badges">
+                    <div class="auth-visual__badge">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Easily track your bookings</span>
+                    </div>
+                    <div class="auth-visual__badge">
+                        <i class="fas fa-car"></i>
+                        <span>Manage your registered vehicles</span>
+                    </div>
+                    <div class="auth-visual__badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Track your protection warranties</span>
+                    </div>
+                    <div class="auth-visual__badge">
+                        <i class="fas fa-crown"></i>
+                        <span>Exclusive offers for Gold members</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auth-visual__footer">
+                <div class="auth-visual__copyright">
+                    © 2026 Johnson Smart Film
+                </div>
+                <div class="auth-visual__partner">
+                    <i class="fas fa-award"></i> RhinePro USA Partner
+                </div>
+            </div>
+        </aside>
+        
+        <!-- ─────── RIGHT: Form Side ─────── -->
+        <main class="auth-form-side">
+            <div class="auth-form-wrap">
+                
+                <!-- Back to website -->
+                <a href="index.html" class="auth-back" id="backToHome" aria-label="Back to website">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to website</span>
+                </a>
+                
+                <!-- Role Toggle -->
+                <div class="auth-role-toggle" role="tablist" aria-label="Login role">
+                    <button type="button" class="auth-role-btn active" data-role="customer" role="tab" aria-selected="true">
+                        <i class="fas fa-user"></i> Customer
+                    </button>
+                    <button type="button" class="auth-role-btn" data-role="staff" role="tab" aria-selected="false">
+                        <i class="fas fa-user-tie"></i> Staff
+                    </button>
+                </div>
+                
+                <!-- Staff Warning -->
+                <div id="staffWarning" class="auth-staff-warning" style="display: none;" role="alert">
+                    <i class="fas fa-info-circle"></i>
+                    <span>This login is for <strong>Johnson staff only</strong>. If you are a customer, please use the customer login.</span>
+                </div>
+                
+                <!-- Header -->
+                <div class="auth-header">
+                    <h2 id="authTitle">Welcome Back</h2>
+                    <p id="authSubtitle">Sign in to access your account</p>
+                </div>
+                
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form" novalidate>
+                    
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="auth-input-wrap">
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="your@email.com"
+                                autocomplete="email"
+                                required
+                                aria-required="true"
+                            >
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                        </div>
+                        <span class="form-error" data-error-for="email">Please enter a valid email address</span>
+                    </div>
+                    
+                    <!-- Password - مع إصلاح أيقونة العين -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="auth-input-wrap auth-input-wrap--password">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                                aria-required="true"
+                                minlength="6"
+                            >
+                            <button type="button" class="eye-btn" id="togglePassword" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="form-error" data-error-for="password">Please enter your password</span>
+                    </div>
+                    
+                    <!-- Remember + Forgot -->
+                    <div class="auth-form-footer">
+                        <label class="auth-remember">
+                            <input type="checkbox" id="remember" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="auth-forgot" id="forgotLink">Forgot password?</a>
+                    </div>
+                    
+                    <!-- Error Message -->
+                    <div id="loginError" class="auth-error-box" style="display: none;" role="alert">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Incorrect email or password</span>
+                    </div>
+                    
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn--primary btn--full" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login</span>
+                    </button>
+                    
+                </form>
+                
+                <!-- Divider -->
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+                
+                <!-- Switch -->
+                <div class="auth-switch">
+                    <span>Don't have an account?</span>
+                    <a href="#" id="registerLink">Contact us to register</a>
+                </div>
+                
+            </div>
+        </main>
+        
+    </div>
+
+    <!-- ═══════════════════ INLINE STYLES ═══════════════════ -->
+    <style>
+        /* Auth page specific styles */
+        .auth-page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .auth-visual {
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+        }
+        
+        .auth-visual__video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.25;
+            filter: saturate(0.4);
+        }
+        
+        .auth-visual__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(6,6,8,0.9), rgba(6,6,8,0.6));
+            z-index: 1;
+        }
+        
+        .auth-visual__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 520px;
+        }
+        
+        .auth-visual__logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+        
+        .auth-visual__logo-img {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+        
+        .auth-visual__logo-text {
+            text-align: left;
+        }
+        
+        .auth-visual__logo-name {
+            font-family: var(--font-disp);
+            font-size: 28px;
+            letter-spacing: 3px;
+            display: block;
+            color: var(--text);
+        }
+        
+        .auth-visual__logo-sub {
+            font-family: var(--font-en);
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: var(--accent);
+        }
+        
+        .auth-visual__tagline {
+            font-family: var(--font-disp);
+            font-size: clamp(36px, 5vw, 56px);
+            line-height: 1.05;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+        
+        .auth-visual__tagline em {
+            font-style: normal;
+            color: var(--accent);
+        }
+        
+        .auth-visual__sub {
+            font-size: 15px;
+            color: var(--text-2);
+            max-width: 360px;
+            line-height: 1.8;
+            margin: 0 auto;
+        }
+        
+        .auth-visual__badges {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 40px;
+            text-align: left;
+        }
+        
+        .auth-visual__badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-2);
+        }
+        
+        .auth-visual__badge i {
+            color: var(--accent);
+            font-size: 14px;
+        }
+        
+        .auth-visual__footer {
+            position: absolute;
+            bottom: 32px;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            font-size: 12px;
+            color: var(--text-3);
+        }
+        
+        .auth-visual__partner {
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .auth-form-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+            background: var(--bg);
+            position: relative;
+        }
+        
+        .auth-form-side::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--border);
+        }
+        
+        .auth-form-wrap {
+            max-width: 440px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .auth-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-2);
+            margin-bottom: 32px;
+            transition: color 0.2s;
+        }
+        
+        .auth-back:hover {
+            color: var(--accent);
+        }
+        
+        .auth-role-toggle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .auth-role-btn {
+            padding: 12px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            color: var(--text-2);
+            background: transparent;
+            border: none;
+            font-family: var(--font-ar);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .auth-role-btn.active {
+            background: var(--accent);
+            color: #000;
+        }
+        
+        .auth-staff-warning {
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+        
+        .auth-staff-warning i {
+            color: var(--accent);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .auth-header {
+            margin-bottom: 32px;
+        }
+        
+        .auth-header h2 {
+            font-family: var(--font-disp);
+            font-size: 38px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .auth-header p {
+            color: var(--text-2);
+            font-size: 15px;
+        }
+        
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.5px;
+        }
+        
+        /* ── Input Wrap - إصلاح أيقونة العين جوه المربع ─────────────────────── */
+        .auth-input-wrap {
+            position: relative;
+            width: 100%;
+        }
+        
+        .auth-input-wrap input {
+            width: 100%;
+            padding: 14px 44px 14px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text);
+            font-size: 14px;
+            font-family: var(--font-ar);
+            transition: border-color 0.2s, background 0.2s;
+        }
+        
+        .auth-input-wrap input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.03);
+        }
+        
+        /* أيقونة الظرف (الإيميل) - ثابتة جوه المربع على اليمين */
+        .auth-input-wrap > i.fa-envelope {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-3);
+            font-size: 15px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* أيقونة العين - جوه المربع على اليمين (زي الظرف بالظبط) */
+        /* ✅ الكود الجديد: */
+.auth-input-wrap .eye-btn {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-3);
+    cursor: pointer;
+    font-size: 15px;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: color 0.2s, transform 0.15s;
+    border-radius: 50%;
+}
+
+.auth-input-wrap .eye-btn:hover {
+    color: var(--accent);
+    background: rgba(0, 212, 255, 0.1);
+}
+
+.auth-input-wrap .eye-btn:active {
+    transform: translateY(-50%) scale(0.9);
+}
+
+/* تأكد إن الـ input مش بيوصل للـ button */
+.auth-input-wrap input {
+    width: 100%;
+    padding: 14px 48px 14px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-size: 14px;
+    font-family: var(--font-ar);
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    z-index: 1;
+}
+        
+        .form-error {
+            font-size: 12px;
+            color: var(--red);
+            display: none;
+            margin-top: 4px;
+        }
+        
+        .form-group.invalid .form-error {
+            display: block;
+        }
+        
+        .form-group.invalid .auth-input-wrap input {
+            border-color: var(--red);
+        }
+        
+        .auth-form-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: -4px 0;
+        }
+        
+        .auth-remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-2);
+        }
+        
+        .auth-remember input {
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+        
+        .auth-forgot {
+            font-size: 13px;
+            color: var(--accent);
+            transition: color 0.2s;
+        }
+        
+        .auth-forgot:hover {
+            text-decoration: underline;
+        }
+        
+        .auth-error-box {
+            background: rgba(255, 64, 96, 0.08);
+            border: 1px solid rgba(255, 64, 96, 0.2);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--red);
+            animation: shakeError 0.4s ease;
+        }
+        
+        @keyframes shakeError {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+        
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 12px;
+            color: var(--text-3);
+            margin: 8px 0;
+        }
+        
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        
+        .auth-switch {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-2);
+        }
+        
+        .auth-switch a {
+            color: var(--accent);
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .auth-page {
+                grid-template-columns: 1fr;
+            }
+            
+            .auth-visual {
+                display: none;
+            }
+            
+            .auth-form-side {
+                padding: 48px 40px;
+                min-height: 100vh;
+            }
+            
+            .auth-form-side::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .auth-form-side {
+                padding: 40px 24px;
+            }
+            
+            .auth-header h2 {
+                font-size: 32px;
+            }
+            
+            .auth-visual__badges {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // ═══════════════════ LOADER LOGIC ═══════════════════
+        const loader = document.getElementById('loader');
+        const loaderParticles = document.getElementById('loaderParticles');
+        const isLowPower = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isMobile = window.innerWidth < 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        
+        // إنشاء particles للـ loader
+        function createLoaderParticles() {
+            if (!loaderParticles || isLowPower || isMobile) return;
+            
+            loaderParticles.innerHTML = '';
+            
+            for (let i = 0; i < 20; i++) {
+                const p = document.createElement('div');
+                const angle = Math.random() * 360;
+                const dist = 60 + Math.random() * 150;
+                const size = 1 + Math.random() * 2;
+                p.style.cssText = `
+                    position:absolute;
+                    width:${size}px;height:${size}px;
+                    background:${Math.random() > 0.5 ? '#00d4ff' : '#c8a97e'};
+                    border-radius:50%;
+                    left:50%;top:50%;
+                    opacity:0;
+                    transform:translate(-50%,-50%);
+                    animation:particleBurst ${(0.8 + Math.random() * 0.6).toFixed(2)}s ease ${(0.3 + Math.random() * 0.5).toFixed(2)}s both;
+                    --angle:${angle}deg;--dist:${dist}px;
+                `;
+                loaderParticles.appendChild(p);
+            }
+            
+            if (!document.getElementById('particleBurstStyle')) {
+                const style = document.createElement('style');
+                style.id = 'particleBurstStyle';
+                style.textContent = `@keyframes particleBurst {
+                    0%   { opacity:0; transform:translate(-50%,-50%) rotate(var(--angle)) translateX(0); }
+                    30%  { opacity:1; }
+                    100% { opacity:0; transform:translate(-50%,-50%) rotate(var(--angle)) translateX(var(--dist)); }
+                }`;
+                document.head.appendChild(style);
+            }
+        }
+        
+        // إظهار الـ Loader
+        function showLoader() {
+            if (!loader) return;
+            
+            loader.classList.remove('hidden');
+            loader.style.opacity = '1';
+            loader.style.visibility = 'visible';
+            loader.style.pointerEvents = 'all';
+            
+            // إعادة تشغيل animation الـ bar
+            const barFill = loader.querySelector('.loader__bar-fill');
+            if (barFill) {
+                barFill.style.animation = 'none';
+                barFill.offsetHeight;
+                barFill.style.animation = 'barFill 1.3s var(--ease-out) 0.3s both';
+            }
+            
+            // إعادة إنشاء الـ particles
+            createLoaderParticles();
+            
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // إخفاء الـ Loader
+        function hideLoader(callback) {
+            if (!loader) return;
+            
+            setTimeout(() => {
+                loader.style.transition = 'opacity 0.7s cubic-bezier(0.76,0,0.24,1), visibility 0.7s';
+                loader.classList.add('hidden');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                loader.style.pointerEvents = 'none';
+                document.body.style.overflow = '';
+                
+                if (callback) {
+                    setTimeout(callback, 700);
+                }
+            }, 1200);
+        }
+        
+        // تشغيل الـ Loader عند فتح الصفحة
+        createLoaderParticles();
+        if (document.readyState === 'complete') {
+            hideLoader();
+        } else {
+            window.addEventListener('load', () => hideLoader());
+        }
+        
+        // Failsafe
+        setTimeout(() => hideLoader(), 5000);
+        
+        // ═══════════════════ ROLE TOGGLE ═══════════════════
+        const roleBtns = document.querySelectorAll('.auth-role-btn');
+        const staffWarning = document.getElementById('staffWarning');
+        const authTitle = document.getElementById('authTitle');
+        const authSubtitle = document.getElementById('authSubtitle');
+        const loginForm = document.getElementById('loginForm');
+        
+        let currentRole = 'customer';
+        
+        roleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                roleBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                
+                currentRole = btn.dataset.role;
+                loginForm.setAttribute('data-role', currentRole);
+                
+                if (currentRole === 'staff') {
+                    staffWarning.style.display = 'flex';
+                    authTitle.textContent = 'Staff Login';
+                    authSubtitle.textContent = 'Access the admin dashboard';
+                } else {
+                    staffWarning.style.display = 'none';
+                    authTitle.textContent = 'Welcome Back';
+                    authSubtitle.textContent = 'Sign in to access your account';
+                }
+            });
+        });
+        
+        // ═══════════════════ PASSWORD TOGGLE ═══════════════════
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', () => {
+                const type = passwordInput.type === 'password' ? 'text' : 'password';
+                passwordInput.type = type;
+                togglePassword.querySelector('i').className = type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+            });
+        }
+        
+        // ═══════════════════ FORM VALIDATION ═══════════════════
+        const loginError = document.getElementById('loginError');
+        const emailInput = document.getElementById('email');
+        const loginBtn = document.getElementById('loginBtn');
+        
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Reset errors
+            document.querySelectorAll('.form-group').forEach(g => g.classList.remove('invalid'));
+            loginError.style.display = 'none';
+            
+            let isValid = true;
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailInput.value || !emailRegex.test(emailInput.value)) {
+                emailInput.closest('.form-group').classList.add('invalid');
+                isValid = false;
+            }
+            
+            // Password validation
+            if (!passwordInput.value || passwordInput.value.length < 6) {
+                passwordInput.closest('.form-group').classList.add('invalid');
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // ✅ إظهار الـ Loader قبل الدخول
+            showLoader();
+            
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Logging in...</span>';
+            
+            setTimeout(() => {
+                // Demo: show error (استبدل ده بـ API حقيقي)
+                loginError.style.display = 'flex';
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> <span>Login</span>';
+                
+                // إخفاء الـ Loader بعد ما يخلص
+                hideLoader();
+                
+                // لو الدخول نجح، استبدل الكود ده بـ:
+                // window.location.href = 'dashboard.html';
+            }, 2000);
+        });
+        
+        // ═══════════════════ REMOVE INVALID STATE ═══════════════════
+        [emailInput, passwordInput].forEach(input => {
+            input.addEventListener('input', () => {
+                input.closest('.form-group').classList.remove('invalid');
+                loginError.style.display = 'none';
+            });
+        });
+        
+        // ═══════════════════ BACK TO HOME WITH LOADER ═══════════════════
+        const backToHome = document.getElementById('backToHome');
+        if (backToHome) {
+            backToHome.addEventListener('click', (e) => {
+                e.preventDefault();
+                showLoader();
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 700);
+            });
+        }
+        
+        // ═══════════════════ FORGOT PASSWORD ═══════════════════
+        document.getElementById('forgotLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Password reset link will be sent to your email.');
+        });
+        
+        // ═══════════════════ REGISTER LINK ═══════════════════
+        document.getElementById('registerLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'https://wa.me/201114171416?text=Hello, I would like to register an account.';
+        });
+    });
+    </script>
+</body>
+</html>
