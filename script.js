@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             loader.style.transition = 'opacity 0.7s cubic-bezier(0.76,0,0.24,1), visibility 0.7s';
             loader.classList.add('hidden');
-        }, 300);
+        }, 1200);
     }
 
     if (document.readyState === 'complete') {
@@ -66,41 +66,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ── 3. Mobile Menu ────────────────────────────────────── */
-const menuBtn = document.getElementById('menuBtn');
-const mobileNav = document.getElementById('mobileNav');
+   const menuBtn        = document.getElementById('menuBtn');
+const mobileNav      = document.getElementById('mobileNav');
+const mobileNavClose = document.getElementById('mobileNavClose');
 
 function openNav() {
     mobileNav.classList.add('open');
-    menuBtn.style.display = 'none';  /* إخفاء الزر نفسه */
+    menuBtn.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 function closeNav() {
     mobileNav.classList.remove('open');
-    menuBtn.style.display = '';      /* إظهاره مرة أخرى */
+    menuBtn.classList.remove('active');
     document.body.style.overflow = '';
 }
 
-if (menuBtn) {
-    menuBtn.addEventListener('click', () => {
-        if (mobileNav.classList.contains('open')) {
-            closeNav();
-        } else {
-            openNav();
-        }
-    });
-}
-
+if (menuBtn) menuBtn.addEventListener('click', openNav);
+if (mobileNavClose) mobileNavClose.addEventListener('click', closeNav);
 if (mobileNav) {
     mobileNav.querySelectorAll('[data-close], .mobile-nav-link').forEach(link => {
         link.addEventListener('click', closeNav);
     });
 }
-
 document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-        closeNav();
-    }
+    if (e.key === 'Escape') closeNav();
 });
+  
+    /* ── 5. Scroll Reveal ──────────────────────────────────── */
+    const revealEls = document.querySelectorAll('.reveal');
+
+    if (revealEls.length) {
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+
+                const siblings = Array.from(
+                    entry.target.parentElement.querySelectorAll('.reveal')
+                );
+                const delay = Math.min(siblings.indexOf(entry.target) * 80, 400);
+
+                setTimeout(() => {
+                    entry.target.classList.add('in');
+                }, delay);
+
+                revealObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+        revealEls.forEach(el => revealObserver.observe(el));
+    }
+
+
     /* ── 6. Counter Animation ──────────────────────────────── */
     const counters = document.querySelectorAll('.stat-number[data-target]');
 
