@@ -66,40 +66,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ── 3. Mobile Menu ────────────────────────────────────── */
-    const menuBtn   = document.getElementById('menuBtn');
-    const mobileNav = document.getElementById('mobileNav');
-    const mobileNavClose = document.getElementById('mobileNavClose');
+   const menuBtn        = document.getElementById('menuBtn');
+const mobileNav      = document.getElementById('mobileNav');
+const mobileNavClose = document.getElementById('mobileNavClose');
 
-    function openNav() {
-        if (!mobileNav || !menuBtn) return;
-        mobileNav.classList.add('open');
-        menuBtn.classList.add('active');
-        menuBtn.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-    }
+function openNav() {
+    mobileNav.classList.add('open');
+    menuBtn.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeNav() {
+    mobileNav.classList.remove('open');
+    menuBtn.classList.remove('active');
+    document.body.style.overflow = '';
+}
 
-    function closeNav() {
-        if (!mobileNav || !menuBtn) return;
-        mobileNav.classList.remove('open');
-        menuBtn.classList.remove('active');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    }
-
-    if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-            if (mobileNav && mobileNav.classList.contains('open')) {
-                closeNav();
-            } else {
-                openNav();
-            }
-        });
-    }
-
-    if (mobileNavClose) {
-        mobileNavClose.addEventListener('click', closeNav);
-    }
-
+if (menuBtn) menuBtn.addEventListener('click', openNav);
+if (mobileNavClose) mobileNavClose.addEventListener('click', closeNav);
+if (mobileNav) {
+    mobileNav.querySelectorAll('[data-close], .mobile-nav-link').forEach(link => {
+        link.addEventListener('click', closeNav);
+    });
+}
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeNav();
+});
     // Close when any mobile nav link is clicked
     if (mobileNav) {
         mobileNav.querySelectorAll('[data-close], .mobile-nav-link').forEach(link => {
