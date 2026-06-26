@@ -92,29 +92,6 @@ document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeNav();
 });
   
-
-
-    /* ── 4. Active Nav Link on Scroll ─────────────────────── */
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.header__nav-link');
-
-    if (sections.length && navLinks.length) {
-        const sectionObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    navLinks.forEach(link => {
-                        link.classList.toggle('active',
-                            link.getAttribute('href') === '#' + id);
-                    });
-                }
-            });
-        }, { threshold: 0.35 });
-
-        sections.forEach(s => sectionObserver.observe(s));
-    }
-
-
     /* ── 5. Scroll Reveal ──────────────────────────────────── */
     const revealEls = document.querySelectorAll('.reveal');
 
