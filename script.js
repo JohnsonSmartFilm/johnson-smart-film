@@ -66,32 +66,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ── 3. Mobile Menu ────────────────────────────────────── */
-   const menuBtn        = document.getElementById('menuBtn');
-const mobileNav      = document.getElementById('mobileNav');
-const mobileNavClose = document.getElementById('mobileNavClose');
+  const menuBtn = document.getElementById('menuBtn');
+const mobileNav = document.getElementById('mobileNav');
 
-function openNav() {
-    mobileNav.classList.add('open');
-    menuBtn.classList.add('active');
-    document.body.style.overflow = 'hidden';
+function toggleNav() {
+    mobileNav.classList.toggle('open');
+    menuBtn.classList.toggle('active');
+
+    if (mobileNav.classList.contains('open')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
 }
+
 function closeNav() {
     mobileNav.classList.remove('open');
     menuBtn.classList.remove('active');
     document.body.style.overflow = '';
 }
 
-if (menuBtn) menuBtn.addEventListener('click', openNav);
-if (mobileNavClose) mobileNavClose.addEventListener('click', closeNav);
+if (menuBtn) {
+    menuBtn.addEventListener('click', toggleNav);
+}
+
 if (mobileNav) {
-    mobileNav.querySelectorAll('[data-close], .mobile-nav-link').forEach(link => {
+    mobileNav.querySelectorAll('.mobile-nav-link').forEach(link => {
         link.addEventListener('click', closeNav);
     });
 }
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeNav();
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeNav();
+    }
 });
-  
     /* ── 5. Scroll Reveal ──────────────────────────────────── */
     const revealEls = document.querySelectorAll('.reveal');
 
