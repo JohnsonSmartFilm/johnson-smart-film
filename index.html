@@ -23,9 +23,22 @@
 
 </head>
 <body>
-
+<div id="mobileNav" class="mobile-nav">
+    <button id="mobileNavClose" class="mobile-nav__close">
+        <i class="fas fa-times"></i>
+    </button>
+    <a href="#home"     class="mobile-nav-link" data-close>Home</a>
+    <a href="#about"    class="mobile-nav-link" data-close>About</a>
+    <a href="#services" class="mobile-nav-link" data-close>Services</a>
+    <a href="#product"  class="mobile-nav-link" data-close>Products</a>
+    <a href="#booking"  class="mobile-nav-link" data-close>Book Now</a>
+    <div class="mobile-nav-footer">
+        <a href="login.html" class="btn btn--outline btn--sm">Login</a>
+        <a href="#booking" class="btn btn--primary btn--sm" data-close>Book Now</a>
+    </div>
+</div>
 <!-- ═══ LOADER ═══════════════════════════════════════════════ -->
-<div id="loader" class="loader hidden">
+<div id="loader" class="loader">
     <div class="loader__glow"></div>
     <div id="loaderParticles" style="position:absolute;inset:0;pointer-events:none;z-index:1"></div>
     <div class="loader__inner">
@@ -39,20 +52,20 @@
 
 <!-- ═══ MOBILE NAV OVERLAY ═══════════════════════════════════ -->
 <div id="mobileNav" class="mobile-nav" role="navigation" aria-label="Mobile navigation">
-    <!-- زر الإغلاق X -->
-    <button class="mobile-nav__close" data-close aria-label="Close menu">
+    <button id="mobileNavClose" class="mobile-nav__close" aria-label="Close menu">
         <i class="fas fa-times"></i>
     </button>
-
     <a href="#home"     class="mobile-nav-link" data-close>Home</a>
     <a href="#about"    class="mobile-nav-link" data-close>About</a>
     <a href="#services" class="mobile-nav-link" data-close>Services</a>
     <a href="#product"  class="mobile-nav-link" data-close>Products</a>
+    <a href="#booking"  class="mobile-nav-link" data-close>Book Now</a>
     <div class="mobile-nav-footer">
         <a href="login.html" class="btn btn--outline btn--sm">Login</a>
         <a href="#booking" class="btn btn--primary btn--sm" data-close>Book Now</a>
     </div>
 </div>
+
 <!-- ═══ HEADER ═══════════════════════════════════════════════ -->
 <header id="header" class="header">
     <div class="header__container container">
