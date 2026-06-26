@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             loader.style.transition = 'opacity 0.7s cubic-bezier(0.76,0,0.24,1), visibility 0.7s';
             loader.classList.add('hidden');
-        }, 1200);
+        }, 300);
     }
 
     if (document.readyState === 'complete') {
