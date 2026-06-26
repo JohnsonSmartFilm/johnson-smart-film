@@ -1,4 +1,3 @@
-
 /* ============================================================
    JOHNSON SMART FILM — Mobile Fixes & Responsive Patch v3.0
    Append this to the END of style.css
@@ -11,10 +10,56 @@ html, body {
 }
 
 /* ── Mobile Nav Overlay (FIXED — was missing styles) ────── */
-.mobile-nav.open ~ .header .header__menu-btn,
-.header:has(~ .mobile-nav.open) .header__menu-btn {
+.mobile-nav {
     display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 6, 8, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 998;
+    gap: 0;
+    /* Smooth slide-in from top */
+    opacity: 0;
+    transform: translateY(-16px);
+    transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+    pointer-events: none;
 }
+.mobile-nav.open {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+/* Close button inside mobile nav */
+.mobile-nav__close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-2);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.mobile-nav__close:hover,
+.mobile-nav__close:active {
+    background: rgba(0,212,255,0.1);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
 /* Mobile nav links */
 .mobile-nav-link {
     font-family: var(--font-disp);
@@ -70,9 +115,9 @@ html, body {
     transition: 0.3s ease;
     pointer-events: none;
 }
-.header__menu-btn.active span {
-    background: var(--accent); /* تغيير اللون فقط */
-}
+.header__menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+.header__menu-btn.active span:nth-child(2) { opacity: 0; }
+.header__menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
 
 /* ── Fix: d-md-inline display utility ──────────────────── */
 .d-none { display: none !important; }
