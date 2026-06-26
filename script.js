@@ -71,13 +71,12 @@ const mobileNav = document.getElementById('mobileNav');
 
 function openNav() {
     mobileNav.classList.add('open');
-    menuBtn.classList.add('active');
+    menuBtn.style.display = 'none';  /* إخفاء الزر نفسه */
     document.body.style.overflow = 'hidden';
 }
-
 function closeNav() {
     mobileNav.classList.remove('open');
-    menuBtn.classList.remove('active');
+    menuBtn.style.display = '';      /* إظهاره مرة أخرى */
     document.body.style.overflow = '';
 }
 
