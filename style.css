@@ -2925,24 +2925,4 @@ animation: touchGlow 0.6s ease-out;
 }
 
  
-  /* صندوق الـ coming soon */
-  .coming-soon-box {
-    padding: 2rem 1rem;
-  }
  
-  .coming-soon-icon {
-    font-size: 3rem;
-  }
- 
-  .coming-soon-box h3 {
-    font-size: 1.4rem;
-  }
- 
-  .coming-soon-box p {
-    font-size: 14px;
-  }
- 
-  .booking-wrap {
-    padding: 2rem 1rem;
-  }
-}
