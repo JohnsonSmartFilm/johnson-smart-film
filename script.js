@@ -91,22 +91,7 @@ if (mobileNav) {
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeNav();
 });
-    // Close when any mobile nav link is clicked
-    if (mobileNav) {
-        mobileNav.querySelectorAll('[data-close], .mobile-nav-link').forEach(link => {
-            link.addEventListener('click', closeNav);
-        });
-
-        // Close on backdrop tap (tap outside the nav content)
-        mobileNav.addEventListener('click', e => {
-            if (e.target === mobileNav) closeNav();
-        });
-    }
-
-    // Close on escape key
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeNav();
-    });
+  
 
 
     /* ── 4. Active Nav Link on Scroll ─────────────────────── */
