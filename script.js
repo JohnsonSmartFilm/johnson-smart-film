@@ -61,8 +61,31 @@ document.addEventListener('DOMContentLoaded', () => {
     handleHeaderScroll();
 
     /* ── 3. Mobile Menu ────────────────────────────────────── */
-    const menuBtn = document.getElementById('menuBtn');
-    const nav     = document.getElementById('mobileNav');
+    const menuBtn        = document.getElementById('menuBtn');
+const mobileNav      = document.getElementById('mobileNav');
+const mobileNavClose = document.getElementById('mobileNavClose');
+
+function openNav() {
+    mobileNav.classList.add('open');
+    menuBtn.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeNav() {
+    mobileNav.classList.remove('open');
+    menuBtn.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+if (menuBtn) menuBtn.addEventListener('click', openNav);
+if (mobileNavClose) mobileNavClose.addEventListener('click', closeNav);
+if (mobileNav) {
+    mobileNav.querySelectorAll('[data-close], .mobile-nav-link').forEach(link => {
+        link.addEventListener('click', closeNav);
+    });
+}
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeNav();
+});
 
     if (menuBtn && nav) {
         menuBtn.addEventListener('click', () => {
