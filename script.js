@@ -66,18 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ── 3. Mobile Menu ────────────────────────────────────── */
-  const menuBtn = document.getElementById('menuBtn');
+const menuBtn = document.getElementById('menuBtn');
 const mobileNav = document.getElementById('mobileNav');
 
-function toggleNav() {
-    mobileNav.classList.toggle('open');
-    menuBtn.classList.toggle('active');
-
-    if (mobileNav.classList.contains('open')) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = '';
-    }
+function openNav() {
+    mobileNav.classList.add('open');
+    menuBtn.classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
 
 function closeNav() {
@@ -87,45 +82,26 @@ function closeNav() {
 }
 
 if (menuBtn) {
-    menuBtn.addEventListener('click', toggleNav);
+    menuBtn.addEventListener('click', () => {
+        if (mobileNav.classList.contains('open')) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    });
 }
 
 if (mobileNav) {
-    mobileNav.querySelectorAll('.mobile-nav-link').forEach(link => {
+    mobileNav.querySelectorAll('[data-close], .mobile-nav-link').forEach(link => {
         link.addEventListener('click', closeNav);
     });
 }
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
         closeNav();
     }
 });
-    /* ── 5. Scroll Reveal ──────────────────────────────────── */
-    const revealEls = document.querySelectorAll('.reveal');
-
-    if (revealEls.length) {
-        const revealObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-
-                const siblings = Array.from(
-                    entry.target.parentElement.querySelectorAll('.reveal')
-                );
-                const delay = Math.min(siblings.indexOf(entry.target) * 80, 400);
-
-                setTimeout(() => {
-                    entry.target.classList.add('in');
-                }, delay);
-
-                revealObserver.unobserve(entry.target);
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-
-        revealEls.forEach(el => revealObserver.observe(el));
-    }
-
-
     /* ── 6. Counter Animation ──────────────────────────────── */
     const counters = document.querySelectorAll('.stat-number[data-target]');
 
