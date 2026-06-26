@@ -2923,6 +2923,59 @@ animation: touchGlow 0.6s ease-out;
     background: linear-gradient(to bottom, var(--accent), transparent);
   }
 }
+/* ═══ COMING SOON BOX ═══ */
+  .coming-soon-box {
+    padding: 2rem 1rem;
+  }
+
+  .coming-soon-icon {
+    font-size: 3rem;
+  }
+
+  .coming-soon-box h3 {
+    font-size: 1.4rem;
+  }
+
+  .coming-soon-box p {
+    font-size: 14px;
+  }
+
+  .booking-wrap {
+    padding: 2rem 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .booking-progress {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .booking-progress__step {
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .booking-progress__num {
+    width: 52px;
+    height: 52px;
+    font-size: 1.1rem;
+  }
+
+  .booking-progress__line {
+    width: 40px;      /* طول الخط بين الدوائر */
+    height: 2px;
+    background: rgba(0, 212, 255, 0.25);
+    margin-top: 26px; /* منتصف الدائرة 52/2 */
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+}
+
+
 
  
  
