@@ -2923,72 +2923,7 @@ animation: touchGlow 0.6s ease-out;
     background: linear-gradient(to bottom, var(--accent), transparent);
   }
 }
-@media (max-width: 768px) {
- 
-  /* حاوية البروجرس */
-  .booking-progress {
-    display: flex;
-    flex-direction: row;       /* أفقي على الموبايل */
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0;
-    margin-bottom: 2rem;
-    flex-wrap: nowrap;
-    position: relative;
-  }
- 
-  /* كل خطوة */
-  .booking-progress__step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
-    position: relative;
-    z-index: 2;
-  }
- 
-  /* الدائرة */
-  .booking-progress__num {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #00d4ff, #006680);
-    color: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
- 
-  /* النص تحت الدائرة */
-  .booking-progress__step span {
-    font-size: 11px;
-    letter-spacing: 1px;
-    color: var(--accent);
-    text-align: center;
-    white-space: nowrap;
-  }
- 
-  /* الخطوط الأفقية بين الخطوات */
-  .booking-progress__step:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 26px;                  /* منتصف الدائرة */
-    left: calc(50% + 26px);
-    right: calc(-50% + 26px);
-    height: 2px;
-    background: rgba(0, 212, 255, 0.25);
-    z-index: 1;
-    width: auto;
-  }
- 
-  /* الـ line div الموجودة في الـ HTML - إخفاء لأننا بنستخدم ::after */
-  .booking-progress__line {
-    display: none;
-  }
+
  
   /* صندوق الـ coming soon */
   .coming-soon-box {
