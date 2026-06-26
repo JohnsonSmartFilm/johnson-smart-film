@@ -11,31 +11,10 @@ html, body {
 }
 
 /* ── Mobile Nav Overlay (FIXED — was missing styles) ────── */
-.mobile-nav {
+.mobile-nav.open ~ .header .header__menu-btn,
+.header:has(~ .mobile-nav.open) .header__menu-btn {
     display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(6, 6, 8, 0.97);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 998;
-    gap: 0;
-    /* Smooth slide-in from top */
-    opacity: 0;
-    transform: translateY(-16px);
-    transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
-    pointer-events: none;
 }
-.mobile-nav.open {
-    display: flex;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: all;
-}
-
 /* Mobile nav links */
 .mobile-nav-link {
     font-family: var(--font-disp);
