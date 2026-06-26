@@ -320,5 +320,42 @@
     background: linear-gradient(to bottom, var(--accent), transparent);
     animation: scrollPulse 2s ease infinite;
   }
+@media (max-width: 768px) {
+  .booking-progress {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+  }
 
+  .booking-progress__step {
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .booking-progress__num {
+    width: 52px;
+    height: 52px;
+    font-size: 1.1rem;
+  }
+
+  .booking-progress__line {
+    width: auto;
+    flex: 1;
+    height: 2px;
+    background: rgba(0, 212, 255, 0.25);
+    margin-top: 26px;
+    align-self: flex-start;
+    flex-shrink: 0;
+  }
+
+  /* إلغاء الخط الرأسي القديم */
+  .booking-progress__step:not(:last-child) {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
   
