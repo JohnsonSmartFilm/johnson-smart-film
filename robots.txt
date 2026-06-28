@@ -1,8 +1,9 @@
 User-agent: *
 Allow: /
 
-# السماح لمحركات البحث بالزحف
-Sitemap: https://johnsonsmartfilm.com/sitemap.xml
+# لا تسمح لجوجل يعمل index لصفحة اللوجين
+Disallow: /login
 
-# منع فهرسة صفحة اللوجين (خصوصية)
-Disallow: /login.html
+# الـ Sitemaps
+Sitemap: https://johnsonsmartfilm.com/sitemap.xml
+Sitemap: https://johnsonsmartfilm.com/video-sitemap.xml
