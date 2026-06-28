@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# السماح لمحركات البحث بالزحف
+Sitemap: https://johnsonsmartfilm.com/sitemap.xml
+
+# منع فهرسة صفحة اللوجين (خصوصية)
+Disallow: /login.html
