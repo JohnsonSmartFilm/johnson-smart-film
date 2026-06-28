@@ -1,20 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- الصفحة الرئيسية — الأعلى أولوية -->
-  <url>
-    <loc>https://johnsonsmartfilm.com/</loc>
-    <lastmod>2026-01-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- صفحة اللوجين — أقل أولوية -->
-  <url>
-    <loc>https://johnsonsmartfilm.com/login</loc>
-    <lastmod>2026-01-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    
+    <!-- الصفحة الرئيسية -->
+    <url>
+        <loc>https://johnsonsmartfilm.com/</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        
+        <!-- الصور الرئيسية -->
+        <image:image>
+            <image:loc>https://johnsonsmartfilm.com/logo.PNG</image:loc>
+            <image:title>Johnson Smart Film Logo</image:title>
+            <image:caption>Official Johnson Smart Film Logo - RhinePro USA Partner</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://johnsonsmartfilm.com/AboutUS.png</image:loc>
+            <image:title>About Johnson Smart Film</image:title>
+            <image:caption>Johnson Smart Film team and workshop in Sheikh Zayed, Egypt</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://johnsonsmartfilm.com/listing_main_2024_jetour_t2_UAE-2.jpg</image:loc>
+            <image:title>PPF Gloss Finish Application</image:title>
+            <image:caption>Premium Paint Protection Film - Gloss Finish by Johnson</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://johnsonsmartfilm.com/pexels-pho-tomass-883344227-32364025.jpg</image:loc>
+            <image:title>PPF Matte Finish Application</image:title>
+            <image:caption>Premium Paint Protection Film - Matte Finish by Johnson</image:caption>
+        </image:image>
+        
+        <!-- الفيديو الرئيسي -->
+        <video:video>
+            <video:thumbnail_loc>https://johnsonsmartfilm.com/AboutUS.png</video:thumbnail_loc>
+            <video:title>Johnson Smart Film - Premium PPF Protection Services</video:title>
+            <video:description>Discover Johnson Smart Film's premium paint protection film (PPF), nano ceramic tinting, ceramic coating, and smart film services in Egypt. Official RhinePro USA partner delivering world-class vehicle protection.</video:description>
+            <video:content_loc>https://johnsonsmartfilm.com/PPF-Protection.mp4</video:content_loc>
+            <video:player_loc>https://johnsonsmartfilm.com/PPF-Protection.mp4</video:player_loc>
+            <video:duration>60</video:duration>
+            <video:publication_date>2026-01-01T00:00:00+02:00</video:publication_date>
+            <video:family_friendly>yes</video:family_friendly>
+            <video:live>no</video:live>
+            <video:tag>PPF</video:tag>
+            <video:tag>Paint Protection Film</video:tag>
+            <video:tag>Ceramic Coating</video:tag>
+            <video:tag>Car Protection Egypt</video:tag>
+            <video:tag>Johnson Smart Film</video:tag>
+            <video:category>Automotive</video:category>
+        </video:video>
+    </url>
+    
+    <!-- صفحة اللوجين -->
+    <url>
+        <loc>https://johnsonsmartfilm.com/login</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
 </urlset>
