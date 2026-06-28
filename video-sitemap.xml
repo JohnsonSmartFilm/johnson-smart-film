@@ -27,7 +27,7 @@
       <video:publication_date>2026-01-01T00:00:00+02:00</video:publication_date>
 
       <!-- ── مدة الفيديو بالثواني (غيّرها للمدة الحقيقية) ── -->
-      <video:duration>60</video:duration>
+      <video:duration>48</video:duration>
 
       <!-- ── الفيديو مجاني ومتاح للعموم ── -->
       <video:requires_subscription>no</video:requires_subscription>
