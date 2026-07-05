@@ -1,6 +1,6 @@
 /* ============================================================
 JOHNSON SMART FILM — Product Catalog Configurator
-Powers products/index.html only
+Powers products.html only
 ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -219,7 +219,7 @@ listCountEl.textContent = items.length;
 listEl.innerHTML = items.map((item, i) => `
 <button class="config-item${item.id === currentId ? ' active' : ''}" data-id="${item.id}">
 <div class="config-item__thumb">
-${item.image ? `<img src="${item.image}" alt="${item.name}">` : `<i class="fas ${item.icon}"></i>`}
+${item.image ? `<img src="${item.image}" alt="${item.name}" loading="lazy" decoding="async">` : `<i class="fas ${item.icon}"></i>`}
 </div>
 <div class="config-item__body">
 <div class="config-item__name">${item.name}</div>
