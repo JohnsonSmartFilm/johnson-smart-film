@@ -1,6 +1,6 @@
 /* ============================================================
 JOHNSON SMART FILM — Product Catalog Configurator
-Powers products.html only
+Powers products/index.html only
 ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
 
