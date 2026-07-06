@@ -1989,3 +1989,31 @@ animation: iconDotPulse 2.4s ease-in-out infinite;
 @media (max-width: 360px) {
   .dev-credit__line { display: none; }
 }
+/* ── Developer Credit (Login page — always visible) ──────────── */
+.auth-dev-credit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-en);
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  color: var(--text-3);
+  text-align: center;
+  transition: color 0.3s;
+}
+.auth-dev-credit i {
+  color: var(--accent);
+  font-size: 10px;
+}
+.auth-dev-credit strong {
+  background: linear-gradient(100deg, var(--accent) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+.auth-dev-credit:hover { color: var(--text-2); }
