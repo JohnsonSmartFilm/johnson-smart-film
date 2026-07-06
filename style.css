@@ -1994,20 +1994,26 @@ animation: iconDotPulse 2.4s ease-in-out infinite;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   margin-top: 28px;
   padding-top: 20px;
   border-top: 1px solid var(--border);
   font-family: var(--font-en);
-  font-size: 11px;
-  letter-spacing: 0.3px;
+  font-size: clamp(8.5px, 2.4vw, 11px);
+  letter-spacing: 0.1px;
   color: var(--text-3);
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
   transition: color 0.3s;
 }
 .auth-dev-credit i {
   color: var(--accent);
-  font-size: 10px;
+  font-size: clamp(8px, 2.1vw, 10px);
+  flex-shrink: 0;
+}
+.auth-dev-credit span {
+  white-space: nowrap;
 }
 .auth-dev-credit strong {
   background: linear-gradient(100deg, var(--accent) 0%, var(--gold) 100%);
