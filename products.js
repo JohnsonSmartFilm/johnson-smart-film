@@ -258,7 +258,7 @@ const isProduct = !!item.image;
 
 const mediaHTML = isProduct ? `
 <div class="stage-media">
-<img src="${item.image}" alt="${item.name}">
+<img src="${item.image}" alt="${item.name}" loading="eager" fetchpriority="high" decoding="async">
 <div class="stage-media__overlay"></div>
 <div class="stage-media__ribbon">${item.ribbon || 'Johnson Smart Film'}</div>
 <div class="stage-media__num">${item.sku}</div>
