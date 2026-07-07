@@ -12,12 +12,12 @@
         
         <!-- الصور الرئيسية -->
         <image:image>
-            <image:loc>https://johnsonsmartfilm.com/logo.PNG</image:loc>
+            <image:loc>https://johnsonsmartfilm.com/logo.webp</image:loc>
             <image:title>Johnson Smart Film Logo</image:title>
             <image:caption>Official Johnson Smart Film Logo - RhinePro USA Partner</image:caption>
         </image:image>
         <image:image>
-            <image:loc>https://johnsonsmartfilm.com/AboutUS.png</image:loc>
+            <image:loc>https://johnsonsmartfilm.com/AboutUS.webp</image:loc>
             <image:title>About Johnson Smart Film</image:title>
             <image:caption>Johnson Smart Film team and workshop in Sheikh Zayed, Egypt</image:caption>
         </image:image>
