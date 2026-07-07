@@ -43,8 +43,12 @@
 <!-- Preload Critical Resources -->
 <link rel="preload" as="style" href="style.css">
 <link rel="preload" as="script" href="script.js">
+<!-- LCP FIX: hero video poster is the element the browser paints first (largest on screen).
+     Preloading it with high priority stops it from being discovered late on slow connections. -->
+<link rel="preload" as="image" href="AboutUS.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 <!-- Stylesheets -->
@@ -169,7 +173,7 @@ JOHNSON
 
 <!-- Hero Section -->
 <section id="home" class="hero">
-<video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="AboutUS.webp">
+<video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="AboutUS.webp" fetchpriority="high">
 <source src="PPF-Protection.mp4" type="video/mp4">
 </video>
 <div id="heroCanvas" class="hero__canvas"></div>
