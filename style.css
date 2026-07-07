@@ -1584,7 +1584,7 @@ position: absolute;
 inset: -50%;
 width: 200%;
 height: 200%;
-background-image: url('logo.png');
+background-image: url('logo.webp');
 background-size: 180px 180px;
 background-repeat: repeat;
 filter: brightness(0) invert(1);
