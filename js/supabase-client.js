@@ -7,7 +7,7 @@
    policies in supabase/schema.sql.
    ============================================================ */
 
-window.SUPABASE_URL = 'https://btitpahyiyhdkyqndfnn.supabase.co/rest/v1/';
+window.SUPABASE_URL = 'https://btitpahyiyhdkyqndfnn.supabase.co';
 window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0aXRwYWh5aXloZGt5cW5kZm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2Njc3MTYsImV4cCI6MjEwMzI0MzcxNn0.DdMR-MG7vbofn2yb72_BEZl5ADkcFvJEkpC0EQiYwDY';
 
 (function () {
