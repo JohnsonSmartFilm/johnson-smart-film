@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-
-# لا تسمح لجوجل يعمل index لصفحة اللوجين
-Disallow: /login
-
-# الـ Sitemaps
-Sitemap: https://johnsonsmartfilm.com/sitemap.xml
-Sitemap: https://johnsonsmartfilm.com/video-sitemap.xml
