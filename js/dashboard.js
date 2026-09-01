@@ -225,17 +225,20 @@
         $('#viewSubtitle').textContent = titles[view][1];
         $('#sidebar').classList.remove('open');
         $('#sidebarBackdrop').classList.remove('open');
+        $('#mobileToggle').setAttribute('aria-expanded', 'false');
       });
     });
 
     $('#logoutBtn').addEventListener('click', window.logout);
     $('#mobileToggle').addEventListener('click', () => {
-      $('#sidebar').classList.toggle('open');
-      $('#sidebarBackdrop').classList.toggle('open');
+      const isOpen = $('#sidebar').classList.toggle('open');
+      $('#sidebarBackdrop').classList.toggle('open', isOpen);
+      $('#mobileToggle').setAttribute('aria-expanded', String(isOpen));
     });
     $('#sidebarBackdrop').addEventListener('click', () => {
       $('#sidebar').classList.remove('open');
       $('#sidebarBackdrop').classList.remove('open');
+      $('#mobileToggle').setAttribute('aria-expanded', 'false');
     });
   }
 
