@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#060608">
 <title>Admin Panel — Johnson Smart Film</title>
+<meta name="description" content="Staff-only admin panel for Johnson Smart Film — manage customers, vehicles, bookings, and services.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/webp" href="/logo.webp">
 <link rel="manifest" href="/site.webmanifest">
@@ -12,12 +13,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"></noscript>
-<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css"></noscript>
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/dashboard.css">
-<script src="/vendor/supabase/supabase.min.js"></script>
-<script src="/js/supabase-client.js"></script>
+<link rel="stylesheet" href="/vendor/fontawesome-admin-subset/fa-subset.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/vendor/fontawesome-admin-subset/fa-subset.css"></noscript>
+<link rel="stylesheet" href="/style.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/style.css"></noscript>
+<link rel="stylesheet" href="/dashboard.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/dashboard.css"></noscript>
 </head>
 <body>
 
@@ -56,7 +57,7 @@
   <main class="dash__main">
     <div class="dash__topbar">
       <div style="display:flex;align-items:center;gap:14px;">
-        <button class="dash__mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+        <button class="dash__mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
         <div class="dash__title">
           <h1 id="viewTitle">Overview</h1>
           <p id="viewSubtitle">Your business at a glance</p>
@@ -76,7 +77,7 @@
 
       <div class="dash-panel">
         <div class="dash-panel__head"><h2>Latest Booking Requests</h2></div>
-        <div class="dtable-wrap"><table class="dtable" id="overviewBookingsTable"><thead><tr><th>Name</th><th>Service</th><th>Phone</th><th>Date</th><th>Status</th></tr></thead><tbody></tbody></table></div>
+        <div class="dtable-wrap"><table class="dtable" id="overviewBookingsTable"><thead><tr><th scope="col">Name</th><th scope="col">Service</th><th scope="col">Phone</th><th scope="col">Date</th><th scope="col">Status</th></tr></thead><tbody></tbody></table></div>
       </div>
     </section>
 
@@ -87,7 +88,7 @@
           <h2>All Customers <span id="customersCount"></span></h2>
           <button class="btn btn--primary btn--sm" id="addCustomerBtn"><i class="fas fa-plus"></i> Add Customer</button>
         </div>
-        <div class="dtable-wrap"><table class="dtable" id="customersTable"><thead><tr><th>Code</th><th>Name</th><th>Contact</th><th>Vehicles</th><th>Services</th><th>Joined</th><th></th></tr></thead><tbody></tbody></table></div>
+        <div class="dtable-wrap"><table class="dtable" id="customersTable"><thead><tr><th scope="col">Code</th><th scope="col">Name</th><th scope="col">Contact</th><th scope="col">Vehicles</th><th scope="col">Services</th><th scope="col">Joined</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead><tbody></tbody></table></div>
       </div>
     </section>
 
@@ -95,7 +96,7 @@
     <section data-view="bookings" class="view" style="display:none;">
       <div class="dash-panel">
         <div class="dash-panel__head"><h2>Booking Requests</h2></div>
-        <div class="dtable-wrap"><table class="dtable" id="bookingsTable"><thead><tr><th>Name</th><th>Contact</th><th>Service</th><th>Vehicle</th><th>Date</th><th>Status</th><th></th></tr></thead><tbody></tbody></table></div>
+        <div class="dtable-wrap"><table class="dtable" id="bookingsTable"><thead><tr><th scope="col">Name</th><th scope="col">Contact</th><th scope="col">Service</th><th scope="col">Vehicle</th><th scope="col">Date</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead><tbody></tbody></table></div>
       </div>
     </section>
 
@@ -103,7 +104,7 @@
     <section data-view="services" class="view" style="display:none;">
       <div class="dash-panel">
         <div class="dash-panel__head"><h2>All Services</h2></div>
-        <div class="dtable-wrap"><table class="dtable" id="servicesTable"><thead><tr><th>Code</th><th>Customer</th><th>Service</th><th>Vehicle</th><th>Price</th><th>Status</th><th>Warranty</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+        <div class="dtable-wrap"><table class="dtable" id="servicesTable"><thead><tr><th scope="col">Code</th><th scope="col">Customer</th><th scope="col">Service</th><th scope="col">Vehicle</th><th scope="col">Price</th><th scope="col">Status</th><th scope="col">Warranty</th><th scope="col">Actions</th></tr></thead><tbody></tbody></table></div>
       </div>
     </section>
 
@@ -113,7 +114,7 @@
 <!-- ══════════ MODAL: Add Customer ══════════ -->
 <div class="modal-overlay" id="modalCustomer">
   <div class="modal-box">
-    <div class="modal-box__head"><h3>Add New Customer</h3><button class="modal-close" data-close-modal><i class="fas fa-times"></i></button></div>
+    <div class="modal-box__head"><h3>Add New Customer</h3><button class="modal-close" data-close-modal aria-label="Close"><i class="fas fa-times"></i></button></div>
     <form class="dform" id="customerForm">
       <div class="form-group dform__full"><label for="c_name">Full Name *</label><input type="text" id="c_name" name="c_name" autocomplete="name" required></div>
       <div class="form-group"><label for="c_email">Email *</label><input type="email" id="c_email" name="c_email" autocomplete="email" required></div>
@@ -141,23 +142,23 @@
 <!-- ══════════ MODAL: Customer Detail ══════════ -->
 <div class="modal-overlay" id="modalDetail">
   <div class="modal-box" style="max-width:760px;">
-    <div class="modal-box__head"><h3 id="detailName">Customer</h3><div style="display:flex;align-items:center;gap:10px;"><button class="btn btn--outline btn--sm" id="deleteCustomerBtn" style="color:var(--red);border-color:rgba(255,64,96,0.3);"><i class="fas fa-trash"></i> Delete Customer</button><button class="modal-close" data-close-modal><i class="fas fa-times"></i></button></div></div>
+    <div class="modal-box__head"><h3 id="detailName">Customer</h3><div style="display:flex;align-items:center;gap:10px;"><button class="btn btn--outline btn--sm" id="deleteCustomerBtn" style="color:var(--red);border-color:rgba(255,64,96,0.3);"><i class="fas fa-trash"></i> Delete Customer</button><button class="modal-close" data-close-modal aria-label="Close"><i class="fas fa-times"></i></button></div></div>
     <div style="display:flex;gap:16px;font-size:13px;color:var(--text-2);margin-bottom:18px;flex-wrap:wrap;">
       <span id="detailCode"></span><span id="detailEmail"></span><span id="detailPhone"></span>
     </div>
 
     <div class="dash-panel__head"><h2 style="font-size:15px;">Vehicles</h2><button class="btn btn--outline btn--sm" id="addVehicleBtn"><i class="fas fa-plus"></i> Add Vehicle</button></div>
-    <div class="dtable-wrap"><table class="dtable" id="detailVehiclesTable"><thead><tr><th>Code</th><th>Vehicle</th><th>Plate</th><th></th></tr></thead><tbody></tbody></table></div>
+    <div class="dtable-wrap"><table class="dtable" id="detailVehiclesTable"><thead><tr><th scope="col">Code</th><th scope="col">Vehicle</th><th scope="col">Plate</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead><tbody></tbody></table></div>
 
     <div class="dash-panel__head" style="margin-top:22px;"><h2 style="font-size:15px;">Services</h2><button class="btn btn--outline btn--sm" id="addServiceBtn"><i class="fas fa-plus"></i> Add Service</button></div>
-    <div class="dtable-wrap"><table class="dtable" id="detailServicesTable"><thead><tr><th>Code</th><th>Service</th><th>Status</th><th>Warranty</th><th></th></tr></thead><tbody></tbody></table></div>
+    <div class="dtable-wrap"><table class="dtable" id="detailServicesTable"><thead><tr><th scope="col">Code</th><th scope="col">Service</th><th scope="col">Status</th><th scope="col">Warranty</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead><tbody></tbody></table></div>
   </div>
 </div>
 
 <!-- ══════════ MODAL: Add Vehicle ══════════ -->
 <div class="modal-overlay" id="modalVehicle">
   <div class="modal-box">
-    <div class="modal-box__head"><h3>Add Vehicle</h3><button class="modal-close" data-close-modal><i class="fas fa-times"></i></button></div>
+    <div class="modal-box__head"><h3>Add Vehicle</h3><button class="modal-close" data-close-modal aria-label="Close"><i class="fas fa-times"></i></button></div>
     <form class="dform" id="vehicleForm">
       <div class="form-group"><label for="v_make">Make *</label><input type="text" id="v_make" name="v_make" autocomplete="off" required></div>
       <div class="form-group"><label for="v_model">Model</label><input type="text" id="v_model" name="v_model" autocomplete="off"></div>
@@ -175,7 +176,7 @@
 <!-- ══════════ MODAL: Add Service ══════════ -->
 <div class="modal-overlay" id="modalService">
   <div class="modal-box">
-    <div class="modal-box__head"><h3>Add Service</h3><button class="modal-close" data-close-modal><i class="fas fa-times"></i></button></div>
+    <div class="modal-box__head"><h3>Add Service</h3><button class="modal-close" data-close-modal aria-label="Close"><i class="fas fa-times"></i></button></div>
     <form class="dform" id="serviceForm">
       <div class="form-group dform__full">
         <label for="s_vehicle">Vehicle</label>
@@ -213,6 +214,10 @@
 
 <div id="toastHost"></div>
 
+<!-- Supabase loaded here (right before the code that uses it) instead of
+     in <head>, so the dashboard skeleton can paint first. -->
+<script src="/vendor/supabase/supabase.min.js"></script>
+<script src="/js/supabase-client.js"></script>
 <script src="/js/admin.js"></script>
 </body>
 </html>
