@@ -70,7 +70,7 @@
 }
 .dash__user-mini-info { overflow: hidden; }
 .dash__user-mini-info b { display: block; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dash__user-mini-info span { font-size: 11px; color: var(--text-3); }
+.dash__user-mini-info span { font-size: 11px; color: var(--text-2); }
 
 /* ── Main area ───────────────────────────────────────── */
 /* NOTE: intentionally no `margin: 0 auto` here. In CSS Grid, a grid item
@@ -149,13 +149,13 @@
 .notif-item--warning .notif-item__icon { background: rgba(255,184,0,0.12); color: #ffb800; }
 .notif-item__body b { display: block; font-size: 13.5px; color: var(--text); }
 .notif-item__body p { font-size: 12.5px; color: var(--text-2); margin-top: 2px; }
-.notif-item__body time { font-size: 11px; color: var(--text-3); margin-top: 4px; display: block; }
+.notif-item__body time { font-size: 11px; color: var(--text-2); margin-top: 4px; display: block; }
 .notif-item.unread { background: rgba(0,212,255,0.04); border-radius: var(--radius-sm); }
 
 /* ── Tables (admin) ──────────────────────────────────── */
 .dtable-wrap { overflow-x: auto; }
 .dtable { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-.dtable th { text-align: left; padding: 12px 14px; color: var(--text-3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.7px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.dtable th { text-align: left; padding: 12px 14px; color: var(--text-2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.7px; border-bottom: 1px solid var(--border); white-space: nowrap; }
 .dtable td { padding: 14px; border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: middle; }
 .dtable tr:last-child td { border-bottom: none; }
 .dtable tr:hover td { background: rgba(255,255,255,0.015); }
@@ -274,3 +274,6 @@
   #toastHost { left: 12px; right: 12px; bottom: 16px; }
   .toast { min-width: 0; width: 100%; }
 }
+
+/* ── Screen-reader-only utility ──────────────────────── */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
