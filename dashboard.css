@@ -48,10 +48,10 @@
   display: flex; align-items: center; gap: 12px;
   padding: 11px 14px; border-radius: var(--radius-sm);
   color: var(--text-2); font-size: 14px; font-weight: 500;
-  cursor: pointer; transition: var(--trans); border: 1px solid transparent;
+  cursor: pointer; transition: background-color var(--trans), color var(--trans); border: 1px solid transparent;
   background: none; text-align: left; width: 100%; font-family: var(--font-en);
 }
-.dash__nav-item i { width: 18px; text-align: center; color: var(--text-3); transition: var(--trans); }
+.dash__nav-item i { width: 18px; text-align: center; color: var(--text-3); transition: color var(--trans); }
 .dash__nav-item:hover { background: var(--bg-card); color: var(--text); }
 .dash__nav-item.active {
   background: var(--accent-dim); color: var(--accent); border-color: rgba(0,212,255,0.25);
@@ -91,7 +91,7 @@
 .dash__stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 18px; margin-bottom: 36px; }
 .stat-card {
   background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 22px; position: relative; overflow: hidden; transition: var(--trans);
+  padding: 22px; position: relative; overflow: hidden; transition: border-color var(--trans), transform var(--trans);
 }
 .stat-card:hover { border-color: var(--border-2); transform: translateY(-2px); }
 .stat-card__icon {
@@ -114,7 +114,7 @@
 .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 18px; }
 .svc-card {
   background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 20px; position: relative; transition: var(--trans);
+  padding: 20px; position: relative; transition: border-color var(--trans), box-shadow var(--trans);
 }
 .svc-card:hover { border-color: rgba(0,212,255,0.3); box-shadow: 0 12px 30px rgba(0,212,255,0.08); }
 .svc-card__top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
@@ -164,7 +164,7 @@
 .icon-btn {
   width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border);
   background: var(--bg-2); color: var(--text-2); display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: var(--trans); font-size: 12.5px;
+  cursor: pointer; transition: color var(--trans), border-color var(--trans); font-size: 12.5px;
 }
 .icon-btn:hover { color: var(--accent); border-color: rgba(0,212,255,0.3); }
 .icon-btn--danger:hover { color: var(--red); border-color: rgba(255,64,96,0.3); }
