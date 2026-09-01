@@ -17,6 +17,12 @@
 <noscript><link rel="stylesheet" href="/vendor/fontawesome-admin-subset/fa-subset.css"></noscript>
 <link rel="stylesheet" href="/style.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/style.css"></noscript>
+<!-- Hides the modal overlays immediately, before the (now non-blocking)
+     dashboard.css arrives. Without this, each modal briefly renders as a
+     plain unstyled div full of detail-table markup, then collapses out of
+     flow the instant dashboard.css applies its real position:fixed rule —
+     that collapse is a huge, spurious layout shift. -->
+<style>.modal-overlay{position:fixed;inset:0;opacity:0;pointer-events:none;display:flex}</style>
 <link rel="stylesheet" href="/dashboard.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/dashboard.css"></noscript>
 </head>
