@@ -11,14 +11,14 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&amp;family=Bebas+Neue&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&amp;family=Bebas+Neue&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap"></noscript>
 <link rel="stylesheet" href="/vendor/fontawesome-dashboard-subset/fa-subset.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/vendor/fontawesome-dashboard-subset/fa-subset.css"></noscript>
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/dashboard.css">
-<script src="/vendor/supabase/supabase.min.js"></script>
-<script src="/js/supabase-client.js"></script>
+<script src="/vendor/supabase/supabase.min.js" defer></script>
+<script src="/js/supabase-client.js" defer></script>
 </head>
 <body>
 
@@ -33,7 +33,7 @@
 
   <aside class="dash__sidebar" id="sidebar">
     <div class="dash__brand">
-      <img src="/logo.webp" alt="Johnson Smart Film">
+      <img src="/logo-sm.webp" alt="Johnson Smart Film" width="40" height="40">
       <div class="dash__brand-text"><b>JOHNSON</b><span>SMART FILM</span></div>
     </div>
 
@@ -61,7 +61,7 @@
   <main class="dash__main">
     <div class="dash__topbar">
       <div style="display:flex;align-items:center;gap:14px;">
-        <button class="dash__mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+        <button class="dash__mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="sidebar"><i class="fas fa-bars"></i></button>
         <div class="dash__title">
           <h1 id="viewTitle">Welcome back</h1>
           <p id="viewSubtitle">Here's what's happening with your account</p>
@@ -139,6 +139,6 @@
 
 <div id="toastHost"></div>
 
-<script src="/js/dashboard.js"></script>
+<script src="/js/dashboard.js" defer></script>
 </body>
 </html>
