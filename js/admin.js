@@ -177,9 +177,6 @@
       e.preventDefault();
       const errBox = $('#customerFormError');
       errBox.style.display = 'none';
-      const submitBtn = $('#customerFormSubmit');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
 
       const name = $('#c_name').value.trim();
       const email = $('#c_email').value.trim();
@@ -187,20 +184,17 @@
       const password = $('#c_password').value;
       const joinedRaw = $('#c_joined').value; // yyyy-mm-dd or empty
 
-      if (!name || !/[a-zA-Z\u0600-\u06FF]/.test(name)) {
-        errBox.textContent = 'Please enter a valid name.';
+      const V = window.JSFValidate;
+      const validationError = V.fullName(name) || V.email(email) || V.phone(phone, false) || V.password(password);
+      if (validationError) {
+        errBox.textContent = validationError;
         errBox.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Create Customer';
         return;
       }
-      if (phone && phone.replace(/\D/g, '').length < 7) {
-        errBox.textContent = 'Please enter a valid phone number.';
-        errBox.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Create Customer';
-        return;
-      }
+
+      const submitBtn = $('#customerFormSubmit');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
 
       try {
         const temp = window.getTempClient();
@@ -300,24 +294,16 @@
     $('#addVehicleBtn').addEventListener('click', () => openModal('modalVehicle'));
     $('#vehicleForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const make = $('#v_make').value.trim();
-      const yearRaw = $('#v_year').value.trim();
-      const currentYear = new Date().getFullYear();
-
-      if (!make) {
-        window.toast('Please enter the vehicle make', 'error');
-        return;
-      }
-      if (yearRaw && (!/^\d{4}$/.test(yearRaw) || Number(yearRaw) < 1980 || Number(yearRaw) > currentYear + 1)) {
-        window.toast(`Please enter a valid year (1980–${currentYear + 1})`, 'error');
-        return;
-      }
+      const V = window.JSFValidate;
+      const validationError = V.make($('#v_make').value) || V.model($('#v_model').value)
+        || V.year($('#v_year').value) || V.color($('#v_color').value) || V.plate($('#v_plate').value);
+      if (validationError) { window.toast(validationError, 'error'); return; }
 
       const { error } = await window.sb.from('vehicles').insert({
         customer_id: activeCustomerId,
-        make: make,
+        make: $('#v_make').value.trim(),
         model: $('#v_model').value.trim() || null,
-        year: yearRaw || null,
+        year: $('#v_year').value.trim() || null,
         color: $('#v_color').value.trim() || null,
         plate: $('#v_plate').value.trim() || null
       });
