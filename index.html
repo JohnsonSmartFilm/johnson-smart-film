@@ -41,8 +41,8 @@
 <link rel="preload" as="image" href="AboutUS.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&amp;family=Bebas+Neue&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&amp;family=Bebas+Neue&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap"></noscript>
 <!-- Homepage-only Font Awesome subset: just the 33 icons this page actually
      uses, instead of the full ~92KB / 230KB-of-fonts library. -->
 <link rel="stylesheet" href="/vendor/fontawesome-subset/fa-subset.css" media="print" onload="this.media='all'">
@@ -575,31 +575,38 @@ Next <i class="fas fa-arrow-right"></i>
 <div class="booking-form__grid">
 <div class="form-group">
 <label for="bk_make">Car Make <em>*</em></label>
-<input type="text" id="bk_make" name="make" placeholder="e.g. Mercedes" autocomplete="off" required>
+<input type="text" id="bk_make" name="make" placeholder="e.g. Mercedes" autocomplete="off" maxlength="40" required>
+<small class="field-error" id="err_make"></small>
 </div>
 <div class="form-group">
 <label for="bk_model">Model</label>
-<input type="text" id="bk_model" name="model" placeholder="e.g. C200" autocomplete="off">
+<input type="text" id="bk_model" name="model" placeholder="e.g. C200" autocomplete="off" maxlength="40">
+<small class="field-error" id="err_model"></small>
 </div>
 <div class="form-group">
 <label for="bk_year">Year</label>
-<input type="text" id="bk_year" name="year" placeholder="e.g. 2023" inputmode="numeric" autocomplete="off">
+<input type="text" id="bk_year" name="year" placeholder="e.g. 2023" inputmode="numeric" autocomplete="off" maxlength="4">
+<small class="field-error" id="err_year"></small>
 </div>
 <div class="form-group">
 <label for="bk_color">Color</label>
-<input type="text" id="bk_color" name="color" placeholder="e.g. Black" autocomplete="off">
+<input type="text" id="bk_color" name="color" placeholder="e.g. Black" autocomplete="off" maxlength="30">
+<small class="field-error" id="err_color"></small>
 </div>
 <div class="form-group">
 <label for="bk_name">Full Name <em>*</em></label>
-<input type="text" id="bk_name" name="full_name" placeholder="Your full name" autocomplete="name" required>
+<input type="text" id="bk_name" name="full_name" placeholder="Your full name" autocomplete="name" maxlength="80" required>
+<small class="field-error" id="err_full_name"></small>
 </div>
 <div class="form-group">
 <label for="bk_phone">Phone / WhatsApp <em>*</em></label>
-<input type="tel" id="bk_phone" name="phone" placeholder="01xxxxxxxxx" autocomplete="tel" required>
+<input type="tel" id="bk_phone" name="phone" placeholder="01xxxxxxxxx" autocomplete="tel" maxlength="11" required>
+<small class="field-error" id="err_phone"></small>
 </div>
 <div class="form-group booking-form__grid-full">
 <label for="bk_email">Email <em>*</em></label>
-<input type="email" id="bk_email" name="email" placeholder="your@email.com" autocomplete="email" required>
+<input type="email" id="bk_email" name="email" placeholder="your@email.com" autocomplete="email" maxlength="100" required>
+<small class="field-error" id="err_email"></small>
 </div>
 </div>
 <div class="booking-step__actions">
@@ -706,7 +713,7 @@ and warranty in Egypt.
 </li>
 <li>
 <i class="fas fa-map-marker-alt"></i>
-<a href="https://www.google.com/maps?q=30.798669815063477,31.014019012451172&z=17&hl=en" target="_blank" rel="noopener">Cairo Agricultural Rd (Tanta Highway) — after Atwan Group, 1st entrance to El Mahalla El Kubra, Gharbia</a>
+<a href="https://www.google.com/maps?q=30.798669815063477,31.014019012451172&amp;z=17&amp;hl=en" target="_blank" rel="noopener">Cairo Agricultural Rd (Tanta Highway) — after Atwan Group, 1st entrance to El Mahalla El Kubra, Gharbia</a>
 </li>
 <li>
 <i class="fas fa-phone"></i>
@@ -766,6 +773,7 @@ Crafted &amp; Engineered by <strong>Eng. Abdelrahman Mohamed Nada</strong>
   var scripts = [
     '/vendor/supabase/supabase.min.js',
     '/js/supabase-client.js',
+    '/js/validate.js',
     '/js/booking.js',
     '/js/nav-auth.js'
   ];
