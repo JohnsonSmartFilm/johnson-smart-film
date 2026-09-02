@@ -1,0 +1,15 @@
+/*! Font Awesome subset for johnsonsmartfilm.com /dashboard/ page — only the
+    icons actually used on this page, generated from the official Font
+    Awesome package. Full library kept for other pages that need it.
+    Note: fa-bars, fa-circle-info, fa-right-from-bracket, fa-shield,
+    fa-triangle-exclamation and fa-user are not present as their own
+    classes in the site's vendor/fontawesome/css/all.min.css build (that
+    package only ships their renamed/current equivalents or, for fa-bars,
+    no direct equivalent at all), so those icons were silently invisible
+    wherever this page used them. This subset restores them by pointing
+    the old class names at the closest matching glyph. */
+@font-face{font-family:"FAS-D";font-style:normal;font-weight:900;font-display:swap;src:url(../fontawesome-dashboard-subset/fa-solid-900.subset.woff2) format("woff2")}
+.fas,.fa-solid,.fa{font-family:"FAS-D";font-weight:900;display:inline-block;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.fa-arrow-left:before{content:"\f060"}.fa-bars:before{content:"\f039"}.fa-bell:before{content:"\f0f3"}.fa-calendar:before{content:"\f133"}.fa-car:before{content:"\f1b9"}.fa-check:before{content:"\f00c"}.fa-circle-info:before{content:"\f05a"}.fa-hashtag:before{content:"#"}.fa-hourglass-half:before{content:"\f252"}.fa-house:before{content:"\f015"}.fa-id-card:before{content:"\f2c2"}.fa-palette:before{content:"\f53f"}.fa-right-from-bracket:before{content:"\f08b"}.fa-shield:before{content:"\f132"}.fa-shield-halved:before{content:"\f3ed"}.fa-tag:before{content:"\f02b"}.fa-triangle-exclamation:before{content:"\f071"}.fa-user:before{content:"\f007"}
+.fa-spin{animation:fa-spin 2s infinite linear}
+@keyframes fa-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
