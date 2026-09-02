@@ -225,49 +225,51 @@
         $('#viewSubtitle').textContent = titles[view][1];
         $('#sidebar').classList.remove('open');
         $('#sidebarBackdrop').classList.remove('open');
+        $('#mobileToggle').setAttribute('aria-expanded', 'false');
       });
     });
 
     $('#logoutBtn').addEventListener('click', window.logout);
     $('#mobileToggle').addEventListener('click', () => {
-      $('#sidebar').classList.toggle('open');
-      $('#sidebarBackdrop').classList.toggle('open');
+      const isOpen = $('#sidebar').classList.toggle('open');
+      $('#sidebarBackdrop').classList.toggle('open', isOpen);
+      $('#mobileToggle').setAttribute('aria-expanded', String(isOpen));
     });
     $('#sidebarBackdrop').addEventListener('click', () => {
       $('#sidebar').classList.remove('open');
       $('#sidebarBackdrop').classList.remove('open');
+      $('#mobileToggle').setAttribute('aria-expanded', 'false');
     });
   }
 
   function bindForms() {
     $('#profileForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = $('#pf_name').value.trim();
-      const phone = $('#pf_phone').value.trim();
-
-      if (!name || !/[a-zA-Z\u0600-\u06FF]/.test(name)) {
-        window.toast('Please enter a valid name', 'error');
+      const nameErr = window.JSFValidate.fullName($('#pf_name').value);
+      const phoneErr = window.JSFValidate.phone($('#pf_phone').value, false); // phone optional here
+      if (nameErr || phoneErr) {
+        window.toast(nameErr || phoneErr, 'error');
         return;
       }
-      if (phone && phone.replace(/\D/g, '').length < 7) {
-        window.toast('Please enter a valid phone number', 'error');
-        return;
-      }
-
       const { error } = await window.sb.from('profiles').update({
-        full_name: name,
-        phone: phone
+        full_name: $('#pf_name').value.trim(),
+        phone: $('#pf_phone').value.trim()
       }).eq('id', session.user.id);
       window.toast(error ? 'Could not save changes' : 'Profile updated', error ? 'error' : 'success');
       if (!error) {
-        $('#userName').textContent = name;
-        $('#userAvatar').textContent = name[0].toUpperCase();
+        $('#userName').textContent = $('#pf_name').value.trim();
+        $('#userAvatar').textContent = $('#pf_name').value.trim()[0].toUpperCase();
       }
     });
 
     $('#passwordForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const pass = $('#pf_newpass').value;
+      const passErr = window.JSFValidate.password(pass);
+      if (passErr) {
+        window.toast(passErr, 'error');
+        return;
+      }
       const { error } = await window.sb.auth.updateUser({ password: pass });
       window.toast(error ? error.message : 'Password updated successfully', error ? 'error' : 'success');
       if (!error) $('#pf_newpass').value = '';
