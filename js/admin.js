@@ -187,6 +187,21 @@
       const password = $('#c_password').value;
       const joinedRaw = $('#c_joined').value; // yyyy-mm-dd or empty
 
+      if (!name || !/[a-zA-Z\u0600-\u06FF]/.test(name)) {
+        errBox.textContent = 'Please enter a valid name.';
+        errBox.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Create Customer';
+        return;
+      }
+      if (phone && phone.replace(/\D/g, '').length < 7) {
+        errBox.textContent = 'Please enter a valid phone number.';
+        errBox.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Create Customer';
+        return;
+      }
+
       try {
         const temp = window.getTempClient();
         const { data: signUpData, error: signUpErr } = await temp.auth.signUp({ email, password });
@@ -285,11 +300,24 @@
     $('#addVehicleBtn').addEventListener('click', () => openModal('modalVehicle'));
     $('#vehicleForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+      const make = $('#v_make').value.trim();
+      const yearRaw = $('#v_year').value.trim();
+      const currentYear = new Date().getFullYear();
+
+      if (!make) {
+        window.toast('Please enter the vehicle make', 'error');
+        return;
+      }
+      if (yearRaw && (!/^\d{4}$/.test(yearRaw) || Number(yearRaw) < 1980 || Number(yearRaw) > currentYear + 1)) {
+        window.toast(`Please enter a valid year (1980–${currentYear + 1})`, 'error');
+        return;
+      }
+
       const { error } = await window.sb.from('vehicles').insert({
         customer_id: activeCustomerId,
-        make: $('#v_make').value.trim(),
+        make: make,
         model: $('#v_model').value.trim() || null,
-        year: $('#v_year').value.trim() || null,
+        year: yearRaw || null,
         color: $('#v_color').value.trim() || null,
         plate: $('#v_plate').value.trim() || null
       });
