@@ -225,34 +225,43 @@
         $('#viewSubtitle').textContent = titles[view][1];
         $('#sidebar').classList.remove('open');
         $('#sidebarBackdrop').classList.remove('open');
-        $('#mobileToggle').setAttribute('aria-expanded', 'false');
       });
     });
 
     $('#logoutBtn').addEventListener('click', window.logout);
     $('#mobileToggle').addEventListener('click', () => {
-      const isOpen = $('#sidebar').classList.toggle('open');
-      $('#sidebarBackdrop').classList.toggle('open', isOpen);
-      $('#mobileToggle').setAttribute('aria-expanded', String(isOpen));
+      $('#sidebar').classList.toggle('open');
+      $('#sidebarBackdrop').classList.toggle('open');
     });
     $('#sidebarBackdrop').addEventListener('click', () => {
       $('#sidebar').classList.remove('open');
       $('#sidebarBackdrop').classList.remove('open');
-      $('#mobileToggle').setAttribute('aria-expanded', 'false');
     });
   }
 
   function bindForms() {
     $('#profileForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+      const name = $('#pf_name').value.trim();
+      const phone = $('#pf_phone').value.trim();
+
+      if (!name || !/[a-zA-Z\u0600-\u06FF]/.test(name)) {
+        window.toast('Please enter a valid name', 'error');
+        return;
+      }
+      if (phone && phone.replace(/\D/g, '').length < 7) {
+        window.toast('Please enter a valid phone number', 'error');
+        return;
+      }
+
       const { error } = await window.sb.from('profiles').update({
-        full_name: $('#pf_name').value.trim(),
-        phone: $('#pf_phone').value.trim()
+        full_name: name,
+        phone: phone
       }).eq('id', session.user.id);
       window.toast(error ? 'Could not save changes' : 'Profile updated', error ? 'error' : 'success');
       if (!error) {
-        $('#userName').textContent = $('#pf_name').value.trim();
-        $('#userAvatar').textContent = $('#pf_name').value.trim()[0].toUpperCase();
+        $('#userName').textContent = name;
+        $('#userAvatar').textContent = name[0].toUpperCase();
       }
     });
 
