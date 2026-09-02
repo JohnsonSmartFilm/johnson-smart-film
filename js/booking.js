@@ -44,48 +44,40 @@
     });
   }
 
-  // Loose, locale-agnostic phone check: strip everything but digits, then
-  // require a realistic digit count (7–15, matching the international
-  // E.164 range) rather than any specific country's format.
-  function isValidPhone(value) {
-    const digits = value.replace(/\D/g, '');
-    return digits.length >= 7 && digits.length <= 15;
-  }
-  // A "name" must have at least 2 real characters and contain at least one
-  // actual letter (Latin or Arabic) — rejects blank/whitespace-only input
-  // and pure symbol/number junk, without being fussy about international names.
-  function isValidName(value) {
-    const trimmed = value.trim();
-    return trimmed.length >= 2 && /[a-zA-Z\u0600-\u06FF]/.test(trimmed);
-  }
+  // Realistic field validation — rules live in js/validate.js (shared with
+  // the dashboard and admin forms) so all three stay in sync. This rejects
+  // real junk ("asdasd" as a name, "123" as a phone) with a proper Egyptian
+  // mobile format check, rather than the loose "7-15 digits, any country"
+  // check this used to have.
+  const V = window.JSFValidate;
+  const fieldRules = {
+    full_name: (v) => V.fullName(v),
+    phone: (v) => V.phone(v, true),
+    email: (v) => V.email(v),
+    make: (v) => V.make(v),
+    model: (v) => V.model(v),
+    year: (v) => V.year(v),
+    color: (v) => V.color(v)
+  };
 
   function validateStep(n) {
     const stepEl = steps.find(s => Number(s.dataset.step) === n);
     let ok = true;
-    stepEl.querySelectorAll('[required]').forEach(input => {
+    stepEl.querySelectorAll('input[name], select[name], textarea[name]').forEach(input => {
+      const rule = fieldRules[input.name];
       const group = input.closest('.form-group');
-      let valid;
-      if (input.type === 'email') {
-        valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
-      } else if (input.type === 'tel') {
-        valid = isValidPhone(input.value);
-      } else if (input.id === 'bk_name') {
-        valid = isValidName(input.value);
-      } else {
-        valid = input.value.trim().length > 0;
+      const errorEl = document.getElementById('err_' + input.name);
+      let message = '';
+      if (rule) {
+        message = rule(input.value);
+      } else if (input.hasAttribute('required')) {
+        message = input.value.trim() ? '' : 'This field is required.';
       }
+      const valid = !message;
       group.classList.toggle('invalid', !valid);
+      if (errorEl) errorEl.textContent = message;
       if (!valid) ok = false;
     });
-    // Year is optional, but if filled in it should be a real year.
-    const yearInput = stepEl.querySelector('#bk_year');
-    if (yearInput) {
-      const yearRaw = yearInput.value.trim();
-      const currentYear = new Date().getFullYear();
-      const yearValid = !yearRaw || (/^\d{4}$/.test(yearRaw) && Number(yearRaw) >= 1980 && Number(yearRaw) <= currentYear + 1);
-      yearInput.closest('.form-group').classList.toggle('invalid', !yearValid);
-      if (!yearValid) ok = false;
-    }
     return ok;
   }
 
@@ -108,7 +100,13 @@
     }
     errorBox.style.display = 'none';
 
-    const data = Object.fromEntries(new FormData(form).entries());
+    const raw = Object.fromEntries(new FormData(form).entries());
+    // Trim every text value before it's used anywhere below — the
+    // per-field validation above already checks the trimmed shape, but
+    // without this the *stored* value could still carry stray leading/
+    // trailing spaces the customer typed by accident.
+    const data = {};
+    Object.keys(raw).forEach(k => { data[k] = typeof raw[k] === 'string' ? raw[k].trim() : raw[k]; });
     const vehicleInfo = [data.make, data.model, data.year, data.color]
       .filter(Boolean).join(' · ');
 
