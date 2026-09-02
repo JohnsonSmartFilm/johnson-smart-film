@@ -5,10 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#060608">
 <title>My Dashboard — Johnson Smart Film</title>
-<meta name="description" content="Customer dashboard for Johnson Smart Film — track your services, vehicles, and bookings.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" type="image/webp" href="/logo.webp">
+<meta name="description" content="Manage your vehicles, service history, and notifications from your Johnson Smart Film customer dashboard.">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="icon" type="image/webp" href="/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&amp;family=Bebas+Neue&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" media="print" onload="this.media='all'">
@@ -125,8 +129,8 @@
         <div class="dash-panel__head"><h2>Profile Info</h2></div>
         <form class="dform" id="profileForm">
           <div class="form-group dform__full"><label for="pf_code">Customer Code</label><input type="text" id="pf_code" name="pf_code" autocomplete="off" disabled></div>
-          <div class="form-group"><label for="pf_name">Full Name</label><input type="text" id="pf_name" name="pf_name" autocomplete="name" maxlength="80" required></div>
-          <div class="form-group"><label for="pf_phone">Phone</label><input type="tel" id="pf_phone" name="pf_phone" autocomplete="tel" maxlength="11"></div>
+          <div class="form-group"><label for="pf_name">Full Name</label><input type="text" id="pf_name" name="pf_name" autocomplete="name" required></div>
+          <div class="form-group"><label for="pf_phone">Phone</label><input type="tel" id="pf_phone" name="pf_phone" autocomplete="tel"></div>
           <div class="form-group dform__full"><label for="pf_email">Email</label><input type="email" id="pf_email" name="pf_email" autocomplete="email" disabled></div>
           <div class="dform__full"><button type="submit" class="btn btn--primary">Save Changes</button></div>
         </form>
@@ -134,7 +138,7 @@
       <div class="dash-panel" style="max-width:560px;">
         <div class="dash-panel__head"><h2>Change Password</h2></div>
         <form class="dform" id="passwordForm">
-          <div class="form-group dform__full"><label for="pf_newpass">New Password</label><input type="password" id="pf_newpass" name="pf_newpass" autocomplete="new-password" minlength="8" required></div>
+          <div class="form-group dform__full"><label for="pf_newpass">New Password</label><input type="password" id="pf_newpass" name="pf_newpass" autocomplete="new-password" minlength="6" required></div>
           <div class="dform__full"><button type="submit" class="btn btn--outline">Update Password</button></div>
         </form>
       </div>
@@ -147,9 +151,9 @@
 
 <!-- Supabase loaded here (right before the code that uses it) instead of
      in <head>, so the dashboard skeleton can paint first. -->
-<script src="/vendor/supabase/supabase.min.js" defer></script>
-<script src="/js/supabase-client.js" defer></script>
-<script src="/js/validate.js" defer></script>
+<script src="/vendor/supabase/supabase.min.js"></script>
+<script src="/js/supabase-client.js"></script>
+<script src="/js/validate.js"></script>
 <script src="/js/dashboard.js" defer></script>
 </body>
 </html>
