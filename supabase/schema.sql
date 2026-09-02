@@ -17,8 +17,12 @@ create table if not exists public.profiles (
   id           uuid primary key references auth.users(id) on delete cascade,
   role         text not null default 'customer' check (role in ('admin','customer')),
   code         text unique,
-  full_name    text not null,
-  phone        text,
+  full_name    text not null check (
+                 full_name ~ '^[A-Za-z؀-ۿ'' -]{3,80}$'
+                 and full_name ~ ' '
+                 and full_name !~ '^(.)\1+$'
+               ),
+  phone        text check (phone is null or phone = '' or regexp_replace(phone, '[\s-]', '', 'g') ~ '^01[0125][0-9]{8}$'),
   email        text,
   notes        text,
   created_at   timestamptz not null default now(),
@@ -30,11 +34,11 @@ create table if not exists public.vehicles (
   id           uuid primary key default gen_random_uuid(),
   code         text unique,
   customer_id  uuid not null references public.profiles(id) on delete cascade,
-  make         text not null,
-  model        text,
-  year         text,
-  color        text,
-  plate        text,
+  make         text not null check (make ~ '^[A-Za-z؀-ۿ -]{2,40}$' and make !~ '^(.)\1+$'),
+  model        text check (model is null or model = '' or model ~ '^[A-Za-z0-9؀-ۿ -]{1,40}$'),
+  year         text check (year is null or year = '' or (year ~ '^[0-9]{4}$' and year::int between 1980 and extract(year from now())::int + 1)),
+  color        text check (color is null or color = '' or color ~ '^[A-Za-z؀-ۿ -]{2,30}$'),
+  plate        text check (plate is null or plate = '' or plate ~ '^[A-Za-z0-9؀-ۿ -]{2,15}$'),
   created_at   timestamptz not null default now()
 );
 
@@ -59,9 +63,13 @@ create table if not exists public.services (
 create table if not exists public.bookings (
   id            uuid primary key default gen_random_uuid(),
   code          text unique,
-  full_name     text not null,
-  email         text not null,
-  phone         text not null,
+  full_name     text not null check (
+                  full_name ~ '^[A-Za-z؀-ۿ'' -]{3,80}$'
+                  and full_name ~ ' '
+                  and full_name !~ '^(.)\1+$'
+                ),
+  email         text not null check (email ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
+  phone         text not null check (regexp_replace(phone, '[\s-]', '', 'g') ~ '^01[0125][0-9]{8}$'),
   service_type  text,
   package       text,
   vehicle_info  text,
