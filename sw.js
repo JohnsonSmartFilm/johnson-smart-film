@@ -1,25 +1,8 @@
-/*
- * Service worker for Johnson Smart Film — Web Push notifications.
- *
- * This file has to live at the SITE ROOT (/sw.js), not inside /js/. A
- * service worker can only control pages under the folder it's served
- * from, so putting it in /js/sw.js would mean it could never receive
- * push events for /dashboard/ or any other top-level page.
- *
- * This does NOT do offline caching or anything else — it only exists to
- * receive push events (even while the site/tab is closed) and show a
- * real OS-level notification.
- */
+/* Service Worker: Web Push Notifications */
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', (event) => event.waitUntil(self.clients.claim()));
 
-self.addEventListener('install', () => {
-  self.skipWaiting();
-});
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
-});
-
-self.addEventListener('push', (event) => {
+self.addEventListener('push', function (event) {
   let data = {};
   try {
     data = event.data ? event.data.json() : {};
@@ -32,33 +15,27 @@ self.addEventListener('push', (event) => {
     body: data.body || '',
     icon: '/android-chrome-192x192.png',
     badge: '/android-chrome-192x192.png',
-    // Distinct notifications should stack, not replace each other — a
-    // fixed tag would make a second notification silently swallow the
-    // first one before the customer ever saw it.
-    tag: data.id || undefined,
-    data: { url: data.url || '/dashboard/' }
+    data: data.data || {}
   };
 
-  event.waitUntil(self.registration.showNotification(title, options));
+  event.waitUntil(
+    self.registration.showNotification(title, options)
+  );
 });
 
-// Clicking the notification focuses an already-open dashboard tab if
-// there is one, instead of always opening a brand new tab.
-self.addEventListener('notificationclick', (event) => {
+self.addEventListener('notificationclick', function (event) {
   event.notification.close();
-  const targetUrl = (event.notification.data && event.notification.data.url) || '/dashboard/';
-
+  const urlToOpen = event.notification.data?.url || '/';
   event.waitUntil(
-    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
       for (const client of clientList) {
-        if (client.url.includes('/dashboard/') && 'focus' in client) {
+        if (client.url.includes(urlToOpen) && 'focus' in client) {
           return client.focus();
         }
       }
-      if (self.clients.openWindow) {
-        return self.clients.openWindow(targetUrl);
+      if (clients.openWindow) {
+        return clients.openWindow(urlToOpen);
       }
     })
   );
 });
-
