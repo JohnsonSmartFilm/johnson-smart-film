@@ -29,7 +29,7 @@
      plain unstyled div, then collapses out of flow the instant
      dashboard.css applies its real position:fixed rule — a huge, spurious
      layout shift (this exact bug was found and fixed on /admin/). -->
-<style>.modal-overlay{position:fixed;inset:0;opacity:0;pointer-events:none;display:flex}</style>
+<style>.modal-overlay{position:fixed;inset:0;opacity:0;pointer-events:none;display:flex;align-items:center;justify-content:center;overflow:hidden}</style>
 <link rel="stylesheet" href="/dashboard.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/dashboard.css"></noscript>
 </head>
