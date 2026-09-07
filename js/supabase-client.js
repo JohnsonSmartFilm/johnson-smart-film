@@ -185,4 +185,87 @@ async function initPushNotifications(customerId = null) {
     console.error('Push notification registration error:', err);
   }
 }
+   // --- دالة تحويل مفتاح VAPID العام إلى الصيغة المطلوبة للمتصفح ---
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+// --- دالة طلب الإذن وتسجيل الجهاز في Supabase ---
+async function subscribeToNotifications(customerId = null) {
+  if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+    console.warn('Push notifications are not supported in this browser.');
+    return;
+  }
+
+  try {
+    // 1. طلب إذن المتصفح
+    const permission = await Notification.requestPermission();
+    if (permission !== 'granted') {
+      console.log('Notification permission denied.');
+      return;
+    }
+
+    // 2. تسجيل Service Worker
+    const registration = await navigator.serviceWorker.register('/sw.js');
+    await navigator.serviceWorker.ready;
+
+    // 3. إنشاء الاشتراك بمفتاح VAPID العام
+    const vapidPublicKey = 'BIe1EtwVTKPP44ZCPQk7mxucAjijqkPqtn3SCXLa2vje9Wtb-n5YFto1pnHAKEPZejUbjpmdcAuQeivvV_C9Af0';
+    let subscription = await registration.pushManager.getSubscription();
+
+    if (!subscription) {
+      subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+      });
+    }
+
+    const subData = subscription.toJSON();
+
+    // 4. حفظ الاشتراك في جدول push_subscriptions (تأكد من اسم عميل supabase المعرف لديك)
+    const client = window.supabaseClient || window.supabase;
+    if (client) {
+      const { error } = await client.from('push_subscriptions').upsert({
+        customer_id: customerId,
+        endpoint: subData.endpoint,
+        p256dh: subData.keys.p256dh,
+        auth: subData.keys.auth,
+        user_agent: navigator.userAgent
+      }, { onConflict: 'endpoint' });
+
+      if (error) {
+        console.error('Failed to save subscription:', error);
+      } else {
+        console.log('Device subscribed successfully!');
+      }
+    }
+  } catch (err) {
+    console.error('Subscription error:', err);
+  }
+}
+
+// الاستماع لتجديد الاشتراك تلقائياً من sw.js
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('message', async (event) => {
+    if (event.data && event.data.type === 'PUSH_SUBSCRIPTION_RENEWED') {
+      const subData = event.data.subscription;
+      const client = window.supabaseClient || window.supabase;
+      if (client) {
+        await client.from('push_subscriptions').upsert({
+          endpoint: subData.endpoint,
+          p256dh: subData.keys.p256dh,
+          auth: subData.keys.auth,
+          user_agent: navigator.userAgent
+        }, { onConflict: 'endpoint' });
+      }
+    }
+  });
+}
 })();
