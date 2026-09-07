@@ -26,7 +26,7 @@
      plain unstyled div full of detail-table markup, then collapses out of
      flow the instant dashboard.css applies its real position:fixed rule —
      that collapse is a huge, spurious layout shift. -->
-<style>.modal-overlay{position:fixed;inset:0;opacity:0;pointer-events:none;display:flex}</style>
+<style>.modal-overlay{position:fixed;inset:0;opacity:0;pointer-events:none;display:flex;align-items:center;justify-content:center;overflow:hidden}</style>
 <link rel="stylesheet" href="/dashboard.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/dashboard.css"></noscript>
 </head>
@@ -151,7 +151,7 @@
 
 <!-- ══════════ MODAL: Customer Detail ══════════ -->
 <div class="modal-overlay" id="modalDetail">
-  <div class="modal-box" style="max-width:760px;">
+  <div class="modal-box modal-box--wide">
     <div class="modal-box__head"><h3 id="detailName">Customer</h3><div class="modal-box__head-actions"><button class="btn btn--outline btn--sm" id="deleteCustomerBtn" style="color:var(--red);border-color:rgba(255,64,96,0.3);"><i class="fas fa-trash"></i> Delete Customer</button><button class="modal-close" data-close-modal aria-label="Close"><i class="fas fa-times"></i></button></div></div>
     <div style="display:flex;gap:16px;font-size:13px;color:var(--text-2);margin-bottom:18px;flex-wrap:wrap;">
       <span id="detailCode"></span><span id="detailEmail"></span><span id="detailPhone"></span>
