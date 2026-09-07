@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#060608">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Johnson SF">
 <title>My Dashboard — Johnson Smart Film</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Manage your vehicles, service history, and notifications from your Johnson Smart Film customer dashboard.">
@@ -119,6 +122,14 @@
     <section data-view="notifications" class="view" style="display:none;">
       <div class="dash-panel">
         <div class="dash-panel__head"><h2>Notifications</h2><button class="btn btn--ghost btn--sm" id="markAllReadBtn">Mark all as read</button></div>
+        <div id="pushPrompt" class="push-prompt" style="display:none;">
+          <i class="fas fa-mobile-screen-button"></i>
+          <div>
+            <strong>Get notified on your phone</strong>
+            <p>Turn on push notifications so you don't have to keep this page open to know when your service is ready.</p>
+          </div>
+          <button class="btn btn--primary btn--sm" id="enablePushBtn">Enable</button>
+        </div>
         <div class="notif-list" id="allNotifs"></div>
       </div>
     </section>
