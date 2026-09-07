@@ -434,7 +434,8 @@
       })
       .subscribe();
   }
-   initPushNotifications(null);
 
   init();
+      initPushNotifications(null);
+
 })();
