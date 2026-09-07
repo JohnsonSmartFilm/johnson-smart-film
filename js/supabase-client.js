@@ -134,4 +134,55 @@ window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXB
     if (str === null || str === undefined) return '';
     return String(str).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
   };
+   // --- إعداد إشعارات الويب Push Notifications ---
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+async function initPushNotifications(customerId = null) {
+  if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+    return;
+  }
+
+  try {
+    const permission = await Notification.requestPermission();
+    if (permission !== 'granted') return;
+
+    const registration = await navigator.serviceWorker.register('/sw.js');
+    await navigator.serviceWorker.ready;
+
+    const vapidPublicKey = 'BIe1EtwVTKPP44ZCPQk7mxucAjijqkPqtn3SCXLa2vje9Wtb-n5YFto1pnHAKEPZejUbjpmdcAuQeivvV_C9Af0';
+    let subscription = await registration.pushManager.getSubscription();
+
+    if (!subscription) {
+      subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+      });
+    }
+
+    const subData = subscription.toJSON();
+
+    // حفظ أو تحديث الاشتراك في جدول push_subscriptions
+    await supabaseClient
+      .from('push_subscriptions')
+      .upsert({
+        customer_id: customerId,
+        endpoint: subData.endpoint,
+        p256dh: subData.keys.p256dh,
+        auth: subData.keys.auth,
+        user_agent: navigator.userAgent
+      }, { onConflict: 'endpoint' });
+
+  } catch (err) {
+    console.error('Push notification registration error:', err);
+  }
+}
 })();
