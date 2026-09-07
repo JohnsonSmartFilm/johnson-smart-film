@@ -36,6 +36,7 @@
       window.sb.from('vehicles').select('*'),
       window.sb.from('services').select('*, profiles(full_name, code), vehicles(make, model)').order('created_at', { ascending: false }),
       window.sb.from('bookings').select('*').order('created_at', { ascending: false })
+       
     ]);
 
     allServices = services || [];
@@ -435,4 +436,5 @@
   }
 
   init();
+   initPushNotifications(null);
 })();
