@@ -278,6 +278,26 @@
 /* ── Screen-reader-only utility ──────────────────────── */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
+/* ── Modal form action rows (Cancel / Submit, Password+Generate) ─────
+   Previously these were one-off inline styles with no wrap behaviour,
+   which is exactly what was overflowing/crowding on narrow phones. */
+.dform__actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+.dform__inline { display: flex; gap: 8px; flex-wrap: wrap; }
+.dform__inline input { min-width: 0; } /* lets the input actually shrink inside the flex row instead of forcing overflow */
+.modal-box__head-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.modal-box__head { flex-wrap: wrap; row-gap: 10px; }
+.modal-box__head h3 { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (max-width: 480px) {
+  /* Below 480px there usually isn't room for two buttons side by side
+     without them looking cramped even after wrapping — stack them and
+     let each take the full width, which is the standard mobile pattern. */
+  .dform__actions { flex-direction: column-reverse; }
+  .dform__actions .btn { width: 100%; }
+  .dform__inline { flex-direction: column; }
+  .dform__inline .btn { width: 100%; }
+}
+
 /* ── Push-notification opt-in prompt ─────────────────── */
 .push-prompt { display: flex; align-items: center; gap: 16px; padding: 18px 20px; margin-bottom: 18px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); }
 .push-prompt i { font-size: 22px; color: var(--accent); flex: none; }
