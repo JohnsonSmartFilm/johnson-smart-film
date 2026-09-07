@@ -375,6 +375,6 @@
     }, { onConflict: 'endpoint' });
     if (error) console.warn('[Push] could not save subscription:', error);
   }
-
+initPushNotifications(user.id);
   init();
 })();
