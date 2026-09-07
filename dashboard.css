@@ -277,3 +277,12 @@
 
 /* ── Screen-reader-only utility ──────────────────────── */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* ── Push-notification opt-in prompt ─────────────────── */
+.push-prompt { display: flex; align-items: center; gap: 16px; padding: 18px 20px; margin-bottom: 18px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.push-prompt i { font-size: 22px; color: var(--accent); flex: none; }
+.push-prompt strong { display: block; font-size: 14.5px; margin-bottom: 3px; }
+.push-prompt p { font-size: 13px; color: var(--text-2); margin: 0; line-height: 1.5; }
+.push-prompt button { flex: none; }
+@media (max-width: 560px) { .push-prompt { flex-wrap: wrap; } .push-prompt button { width: 100%; } }
+
