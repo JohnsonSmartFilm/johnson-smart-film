@@ -17,12 +17,8 @@
 
   window.JSFValidate = {
     fullName(raw) {
-      const v = (raw || '').trim().replace(/\s+/g, ' ');
+      const v = (raw || '').trim();
       if (!v) return 'Please enter a full name.';
-      if (!/^[A-Za-z\u0600-\u06FF' -]{3,80}$/.test(v)) return 'Name can only contain letters, spaces, - and \'.';
-      if (!/[ ]/.test(v)) return 'Please enter a first and last name.';
-      if (v.split(' ').some(w => w.length < 2)) return 'Each part of the name should be at least 2 letters.';
-      if (isRepeatedChar(v.replace(/\s/g, ''))) return 'Please enter a real name.';
       return '';
     },
     // `required` lets callers reuse this for optional phone fields (e.g.
