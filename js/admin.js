@@ -393,8 +393,8 @@
   }
 
   // ── Modal helpers ──
-  function openModal(id) { $('#' + id).classList.add('open'); }
-  function closeModal(id) { $('#' + id).classList.remove('open'); }
+  function openModal(id) { $('#' + id).classList.add('open'); document.body.classList.add('modal-lock'); }
+  function closeModal(id) { $('#' + id).classList.remove('open'); document.body.classList.remove('modal-lock'); }
   function openCustomerModal() { $('#customerForm').reset(); $('#customerFormError').style.display = 'none'; openModal('modalCustomer'); }
 
   function bindModals() {
