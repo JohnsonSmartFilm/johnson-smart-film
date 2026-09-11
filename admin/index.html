@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#060608">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>Admin Panel — Johnson Smart Film</title>
 <meta name="description" content="Staff-only admin panel for Johnson Smart Film — manage customers, vehicles, bookings, and services.">
 <meta name="robots" content="noindex, nofollow">
@@ -78,6 +80,14 @@
 
     <!-- OVERVIEW -->
     <section data-view="overview" class="view">
+      <div id="pushPrompt" class="push-prompt" style="display:none;">
+        <i class="fas fa-mobile-screen-button"></i>
+        <div>
+          <strong>Get notified about new bookings on your phone</strong>
+          <p>Turn on push notifications so you find out the moment someone submits the booking form, even with this tab closed.</p>
+        </div>
+        <button class="btn btn--primary btn--sm" id="enablePushBtn">Enable</button>
+      </div>
       <div class="dash__stats">
         <div class="stat-card"><div class="stat-card__icon"><i class="fas fa-users"></i></div><div class="stat-card__value" id="statCustomers">0</div><div class="stat-card__label">Total Customers</div></div>
         <div class="stat-card stat-card--gold"><div class="stat-card__icon"><i class="fas fa-shield-halved"></i></div><div class="stat-card__value" id="statServices">0</div><div class="stat-card__label">Total Services</div></div>
