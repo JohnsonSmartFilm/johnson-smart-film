@@ -376,6 +376,4 @@
     if (error) console.warn('[Push] could not save subscription:', error);
   }
   init();
-   initPushNotifications(user.id);
-
 })();
