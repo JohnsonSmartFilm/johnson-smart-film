@@ -28,6 +28,7 @@
     bindServiceForm();
     bindCustomerDetailModal();
     subscribeRealtime();
+    initPush();
   }
 
   async function loadAll() {
@@ -124,7 +125,7 @@
         <td>${s.vehicles ? window.escapeHtml((s.vehicles.make||'')+' '+(s.vehicles.model||'')) : '—'}</td>
         <td>${s.price ? Number(s.price).toLocaleString()+' EGP' : '—'}</td>
         <td>
-          <select class="dtable-status-select" data-service-status="${s.id}" style="background:var(--bg-2);color:var(--text);border:1px solid var(--border-2);border-radius:6px;padding:5px 8px;font-size:12.5px;">
+          <select id="statusSelect-${s.id}" name="statusSelect-${s.id}" class="dtable-status-select" data-service-status="${s.id}" style="background:var(--bg-2);color:var(--text);border:1px solid var(--border-2);border-radius:6px;padding:5px 8px;font-size:12.5px;">
             ${['pending','in_progress','completed','cancelled'].map(st => `<option value="${st}" ${s.status===st?'selected':''}>${st.replace('_',' ')}</option>`).join('')}
           </select>
         </td>
@@ -435,7 +436,85 @@
       .subscribe();
   }
 
-  init();
-      initPushNotifications(null);
+  // ── Web Push notifications ──────────────────────────────────────────
+  // Same mechanism as the customer dashboard: the admin's own profile row
+  // (role='admin') is a normal row in `public.profiles`, so it can hold
+  // push subscriptions exactly like a customer's can. What triggers a
+  // push TO the admin is different though — see the "notify admins on
+  // new booking" trigger in Supabase, which inserts into `notifications`
+  // for every admin profile whenever the public booking form is used.
+  const VAPID_PUBLIC_KEY = 'BIe1EtwVTKPP44ZCPQk7mxucAjijqkPqtn3SCXLa2vje9Wtb-n5YFto1pnHAKEPZejUbjpmdcAuQeivvV_C9Af0';
 
+  function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+    const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+    const rawData = atob(base64);
+    return Uint8Array.from([...rawData].map((c) => c.charCodeAt(0)));
+  }
+
+  async function initPush() {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
+
+    let registration;
+    try {
+      registration = await navigator.serviceWorker.register('/sw.js');
+    } catch (err) {
+      console.warn('[Push] service worker registration failed:', err);
+      return;
+    }
+
+    navigator.serviceWorker.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'PUSH_SUBSCRIPTION_RENEWED') {
+        savePushSubscription(event.data.subscription);
+      }
+    });
+
+    const existing = await registration.pushManager.getSubscription();
+    if (existing) return;
+
+    if (Notification.permission === 'denied') return;
+
+    const prompt = $('#pushPrompt');
+    if (prompt) prompt.style.display = 'flex';
+
+    const enableBtn = $('#enablePushBtn');
+    if (enableBtn) {
+      enableBtn.addEventListener('click', () => enablePush(registration), { once: true });
+    }
+  }
+
+  async function enablePush(registration) {
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission !== 'granted') {
+        window.toast('Notifications permission was not granted', 'error');
+        return;
+      }
+      const subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+      });
+      await savePushSubscription(subscription);
+      const prompt = $('#pushPrompt');
+      if (prompt) prompt.style.display = 'none';
+      window.toast('Push notifications enabled', 'success');
+    } catch (err) {
+      console.warn('[Push] could not subscribe:', err);
+      window.toast('Could not enable notifications on this device', 'error');
+    }
+  }
+
+  async function savePushSubscription(subscription) {
+    const json = typeof subscription.toJSON === 'function' ? subscription.toJSON() : subscription;
+    const { error } = await window.sb.from('push_subscriptions').upsert({
+      customer_id: session.user.id,
+      endpoint: json.endpoint,
+      p256dh: json.keys.p256dh,
+      auth: json.keys.auth,
+      user_agent: navigator.userAgent.slice(0, 255)
+    }, { onConflict: 'endpoint' });
+    if (error) console.warn('[Push] could not save subscription:', error);
+  }
+
+  init();
 })();
