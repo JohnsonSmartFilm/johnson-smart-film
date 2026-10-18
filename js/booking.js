@@ -93,6 +93,15 @@
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Honeypot: a filled hidden field means a bot. Pretend success with the
+    // same UI a real customer sees, so the bot learns nothing about why.
+    const honeypot = form.querySelector('#bk_website');
+    if (honeypot && honeypot.value.trim() !== '') {
+      form.style.display = 'none';
+      successBox.classList.add('is-active');
+      return;
+    }
     if (!validateStep(3) || !validateStep(2)) {
       errorBox.style.display = 'flex';
       showStep(!validateStep(2) ? 2 : 3);
